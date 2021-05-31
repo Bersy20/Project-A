@@ -4,36 +4,43 @@
     ViewData["Title"] = "LoginAdmin";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h1>Admin Executive Login</h1>
-
-
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="LoginAdmin">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="ExecutiveId" class="control-label"></label>
-                <input asp-for="ExecutiveId" class="form-control" />
-                <span asp-validation-for="ExecutiveId" class="text-danger"></span>
-            </div>
-           
-            <div class="form-group">
-                <label asp-for="Password" class="control-label"></label>
-               
-                @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
-                
-                <span asp-validation-for="Password" class="text-danger"></span>
-            </div>
-           
-           
-            <div class="form-group">
-                <input type="submit" value="Login" class="btn btn-primary" />
-            </div>
-        </form>
+<body>
+    <br />
+    <h1 style="color:teal">Welcome to Delivery Booking Service...</h1>
+    <hr />
+   
+    <marquee width="100%" direction="left" scrollamount="12" height="50px">
+        <h2 style="color:cadetblue">World's Best and Fastest Delivery system</h2>
+    </marquee>
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="LoginAdmin">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="ExecutiveId"><h5>Enter Your ID</h5> </label>
+                    <input asp-for="ExecutiveId" class="form-control" />
+                    <span asp-validation-for="ExecutiveId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ExecutiveId"><h5>Enter Your Password</h5> </label>
+                    @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <br />
+                <div class="form-group">
+                    <input type="submit" value="Login" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
     </div>
-</div>
-
-
-
+    <img id="home" src="~/Images/2.png" height="300px" />
+    <style>
+        #home {
+            position: absolute;
+            top: 300px;
+            right: 40px;
+            left: 700px;
+            bottom: 400px;
+        }
+    </style>
+</body>
