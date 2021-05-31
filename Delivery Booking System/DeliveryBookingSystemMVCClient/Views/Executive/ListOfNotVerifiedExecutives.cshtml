@@ -1,0 +1,89 @@
+﻿@model IEnumerable<DeliveryBookingSystemMVCClient.Models.Executive>
+
+@{
+    ViewData["Title"] = "ListOfNotVerifiedExecutives";
+    Layout = "~/Views/Shared/AdminExecutiveListLayout.cshtml";
+}
+
+<h1>List Of NotVerified Executives</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ExecutiveId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ExecutiveName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Password)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Age)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.City)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PinCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsVerified)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ExecutiveStatus)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExecutiveId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExecutiveName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Password)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Age)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.City)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PinCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsVerified)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExecutiveStatus)
+            </td>
+            <td>
+
+                @Html.ActionLink("Edit", "EditExecutiveDetails", new { id = item.ExecutiveId }) |
+
+                @Html.ActionLink("Delete", "DeleteExecutive", new { id = item.ExecutiveId })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

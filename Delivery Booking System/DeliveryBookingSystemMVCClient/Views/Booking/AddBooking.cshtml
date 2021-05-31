@@ -1,0 +1,70 @@
+﻿@model DeliveryBookingSystemMVCClient.Models.Booking
+
+@{
+    ViewData["Title"] = "AddBooking";
+    Layout = "~/Views/Shared/CustomerLayout.cshtml";
+
+}
+
+<h1>Book here For Delivery</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddBooking">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="CustomerId" class="control-label"></label>
+                <input asp-for="CustomerId" class="form-control" />
+                <span asp-validation-for="CustomerId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+            <label asp-for="ExecutiveId" class="control-label"></label>
+            <input asp-for="ExecutiveId" class="form-control" />
+            <span asp-validation-for="ExecutiveId" class="text-danger"></span>
+            <div>
+                <a asp-controller="Executive" asp-action="ListOfExecutiveAvailableForCustomerView">*Click Here To Select Executive For Delivery </a>
+            </div>
+        </div>
+            <div class="form-group">
+                <label asp-for="DateTimeOfPickUp" class="control-label"></label>
+                <input asp-for="DateTimeOfPickUp" class="form-control" />
+                <span asp-validation-for="DateTimeOfPickUp" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WeightOfPackage" class="control-label"></label>
+                <input asp-for="WeightOfPackage" class="form-control" />
+                <span asp-validation-for="WeightOfPackage" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Address" class="control-label"></label>
+                <input asp-for="Address" class="form-control" />
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="City" class="control-label"></label>
+                <input asp-for="City" class="form-control" />
+                <span asp-validation-for="City" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PinCode" class="control-label"></label>
+                <input asp-for="PinCode" class="form-control" />
+                <span asp-validation-for="PinCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Phone" class="control-label"></label>
+                <input asp-for="Phone" class="form-control" />
+                <span asp-validation-for="Phone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Book Now" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<br />
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

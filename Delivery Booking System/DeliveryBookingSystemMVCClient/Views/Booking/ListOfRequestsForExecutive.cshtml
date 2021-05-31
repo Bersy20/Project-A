@@ -1,0 +1,93 @@
+﻿@model IEnumerable<DeliveryBookingSystemMVCClient.Models.Booking>
+
+@{
+    ViewData["Title"] = "ListOfRequestsForExecutive";
+    Layout = "~/Views/Shared/BookingForEachExecutive.cshtml";
+}
+
+<h1>List Of Requests For Delivery</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.BookingId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ExecutiveId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateTimeOfPickUp)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WeightOfPackage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.City)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PinCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+             <th>
+                @Html.DisplayNameFor(model => model.DeliveryStatus)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.BookingId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExecutiveId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateTimeOfPickUp)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WeightOfPackage)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.City)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PinCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeliveryStatus)
+            </td>
+             <td>
+                <a asp-action="DeliveryStatusUpdate" asp-route-id="@item.BookingId">Update Status</a> 
+                
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

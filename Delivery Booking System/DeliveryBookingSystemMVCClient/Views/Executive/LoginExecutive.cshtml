@@ -1,0 +1,41 @@
+﻿@model DeliveryBookingSystemMVCClient.Models.Executive
+
+@{
+    ViewData["Title"] = "LoginExecutive";
+}
+
+<h1>Executive Login</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="LoginExecutive">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ExecutiveId" class="control-label"></label>
+                <input asp-for="ExecutiveId" class="form-control" />
+                <span asp-validation-for="ExecutiveId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password" class="control-label"></label>
+                @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <input type="submit" value="Login" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+<h5>If you don't have account Register Here</h5>
+<div class="form-group">
+            <a asp-action="RegisterExecutive"><input type="submit" value="Regiser Here"  class="btn btn-primary" /></a>    
+            </div>
+@*<div>
+    <a asp-action="RegisterExecutive">Regiser Here</a>
+</div>*@
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
