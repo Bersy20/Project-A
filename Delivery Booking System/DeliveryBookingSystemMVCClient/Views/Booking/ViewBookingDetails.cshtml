@@ -8,76 +8,79 @@
 <h1>View Booking Details</h1>
 
 <div>
-    <h4>Booking</h4>
     <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.BookingId)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.BookingId)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.CustomerId)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.CustomerId)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.ExecutiveId)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.ExecutiveId)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.DateTimeOfPickUp)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.DateTimeOfPickUp)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.WeightOfPackage)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.WeightOfPackage)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Address)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Address)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.City)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.City)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.PinCode)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.PinCode)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Phone)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Phone)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.DeliveryStatus)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.DeliveryStatus)
-        </dd>
-    </dl>
+    <form>
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.BookingId)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.BookingId)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.CustomerId)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.CustomerId)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.ExecutiveId)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.ExecutiveId)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.DateTimeOfPickUp)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.DateTimeOfPickUp)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.WeightOfPackage)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.WeightOfPackage)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Address)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Address)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.City)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.City)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.PinCode)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.PinCode)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Phone)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Phone)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Price)
+            </dt>
+            <dd class="col-sm-10">
+                
+                @Html.DisplayFor(model => model.Price)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.DeliveryStatus)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.DeliveryStatus)
+            </dd>
+        </dl>
+    </form>
+
 </div>
 <div>
     @*@Html.ActionLink("Edit", "EditBookingDetails", new { id = Model.BookingId }) |

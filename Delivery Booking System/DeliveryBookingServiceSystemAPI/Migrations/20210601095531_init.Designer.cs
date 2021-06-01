@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DeliveryBookingServiceSystemAPI.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20210531060901_init")]
+    [Migration("20210601095531_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -52,11 +52,11 @@ namespace DeliveryBookingServiceSystemAPI.Migrations
                     b.Property<int>("PinCode")
                         .HasColumnType("int");
 
-                    b.Property<string>("Price")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<float>("Price")
+                        .HasColumnType("real");
 
-                    b.Property<string>("WeightOfPackage")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<float>("WeightOfPackage")
+                        .HasColumnType("real");
 
                     b.HasKey("BookingId");
 

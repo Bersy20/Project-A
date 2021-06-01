@@ -57,12 +57,12 @@ namespace DeliveryBookingServiceSystemAPI.Migrations
                     CustomerId = table.Column<int>(type: "int", nullable: false),
                     ExecutiveId = table.Column<int>(type: "int", nullable: false),
                     DateTimeOfPickUp = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    WeightOfPackage = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    WeightOfPackage = table.Column<float>(type: "real", nullable: false),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     City = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PinCode = table.Column<int>(type: "int", nullable: false),
                     Phone = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Price = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Price = table.Column<float>(type: "real", nullable: false),
                     DeliveryStatus = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>

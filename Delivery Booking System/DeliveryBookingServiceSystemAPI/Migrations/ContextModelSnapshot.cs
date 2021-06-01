@@ -50,11 +50,11 @@ namespace DeliveryBookingServiceSystemAPI.Migrations
                     b.Property<int>("PinCode")
                         .HasColumnType("int");
 
-                    b.Property<string>("Price")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<float>("Price")
+                        .HasColumnType("real");
 
-                    b.Property<string>("WeightOfPackage")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<float>("WeightOfPackage")
+                        .HasColumnType("real");
 
                     b.HasKey("BookingId");
 

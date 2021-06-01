@@ -16,12 +16,12 @@ namespace DeliveryBookingServiceSystemAPI.Models
         [ForeignKey("Executive")]
         public int ExecutiveId { get; set; }       
         public  DateTime DateTimeOfPickUp { get; set; }
-        public string WeightOfPackage { get; set; }
+        public float WeightOfPackage { get; set; }
         public string Address { get; set; }
         public string City { get; set; }
         public int PinCode { get; set; }
         public string Phone { get; set; }
-        public string Price { get; set; }= "Rs 1000";
+        public float Price { get; set; }= 1000;
         public string DeliveryStatus { get; set; } = "Open";
        
     }

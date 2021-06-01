@@ -4,15 +4,17 @@
     ViewData["Title"] = "LoginCustomer";
 }
 
-<h1> Customer Login</h1>
 
-
+<h1 style="color:teal">Login to Experience our Delivery Service...</h1>
 <hr />
+<marquee width="100%" direction="left" scrollamount="12" height="50px">
+    <h2 style="color:cadetblue">World's Best and Fastest Delivery system</h2>
+</marquee>
 <div class="row">
     <div class="col-md-4">
         <form asp-action="LoginCustomer">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-           
+
             <div class="form-group">
                 <label asp-for="CustomerId" class="control-label"></label>
                 <input asp-for="CustomerId" class="form-control" />
@@ -20,10 +22,10 @@
             </div>
             <div class="form-group">
                 <label asp-for="Password" class="control-label"></label>
-                  @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
+                @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
-           
+
             <div class="form-group">
                 <input type="submit" value="Login" class="btn btn-primary" />
             </div>
@@ -32,12 +34,18 @@
 </div>
 <h5>If you don't have account Register Here</h5>
 <div class="form-group">
-            <a asp-action="RegisterCustomer"><input type="submit" value="Regiser Here"  class="btn btn-primary" /></a>    
-            </div>
-@*<div>
-    <a asp-action="RegisterCustomer">Regiser Here</a>
+    <a asp-action="RegisterCustomer"><input type="submit" value="Regiser Here" class="btn btn-primary" /></a>
 </div>
-*@
+<img id="home" src="~/Images/2.png" height="300px" />
+<style>
+    #home {
+        position: absolute;
+        top: 300px;
+        right: 40px;
+        left: 700px;
+        bottom: 400px;
+    }
+</style>
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

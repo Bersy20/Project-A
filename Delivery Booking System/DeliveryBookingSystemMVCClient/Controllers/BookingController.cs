@@ -43,20 +43,36 @@ namespace DeliveryBookingProjectMVC.Controllers
             booking.ExecutiveId = Convert.ToInt32(TempData.Peek("ExecId"));
             return View(booking);
         }
+        public float CalculatePrice(float weight)
+        {
+            float tax = weight * 2/100;
+            float price = (weight * 100) + (tax);
+            return price;
+        }
         [HttpPost]
         public async Task<ActionResult> AddBooking(Booking booking)
         {
-            using (var httpClient = new HttpClient())
+            try
             {
-                StringContent content = new StringContent(JsonConvert.SerializeObject(booking), Encoding.UTF8, "application/json");
-                using (var response = await httpClient.PostAsync("http://localhost:27527/api/Booking/AddBooking", content))
+                booking.Price = CalculatePrice(booking.WeightOfPackage);
+                using (var httpClient = new HttpClient())
                 {
-                    string apiResponse = await response.Content.ReadAsStringAsync();
-                    var obj = JsonConvert.DeserializeObject<Booking>(apiResponse);
-                    TempData["BookingId"] = obj.BookingId;
+                    StringContent content = new StringContent(JsonConvert.SerializeObject(booking), Encoding.UTF8, "application/json");
+                    using (var response = await httpClient.PostAsync("http://localhost:27527/api/Booking/AddBooking", content))
+                    {
+                        string apiResponse = await response.Content.ReadAsStringAsync();
+                        var obj = JsonConvert.DeserializeObject<Booking>(apiResponse);
+                        TempData["BookingId"] = obj.BookingId;
+                    }
                 }
+                return RedirectToAction("ViewBookingDetails");
             }
-            return RedirectToAction("ViewBookingDetails");
+           catch(Exception e)
+            {
+                ViewBag.error = "Please Enter Valid Customer Id";
+                return View();
+                //return RedirectToAction("ErrorPage","Home");               
+            }
         }
         public async Task<ActionResult> ViewBookingDetails(Booking booking)
         {
