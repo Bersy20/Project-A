@@ -99,6 +99,7 @@ namespace DeliveryBookingSystemMVCClient.Controllers
         }
         public async Task<ActionResult> ListOfExecutiveAvailableForCustomerView()
         {
+           
             string Baseurl = "http://localhost:27527/";
             var ExecutiveInfo = new List<Executive>();
             using (var client = new HttpClient())
@@ -283,6 +284,34 @@ namespace DeliveryBookingSystemMVCClient.Controllers
         public ActionResult ExecutiveLoginErrorPage()
         {
             return View();
+        }
+        public async Task<ActionResult> GetExecutivesByCity(string city)
+        {
+           
+            city = TempData.Peek("Result").ToString();
+            string Baseurl = "http://localhost:27527/";
+            var ExecutiveInfo = new List<Executive>();
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(Baseurl);
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                HttpResponseMessage Res = await client.GetAsync("api/Executive/WithCity?city="+city);
+                if (Res.IsSuccessStatusCode)
+                {
+                    var ExecutiveResponse = Res.Content.ReadAsStringAsync().Result;
+                    ExecutiveInfo = JsonConvert.DeserializeObject<List<Executive>>(ExecutiveResponse);
+                }
+                return View(ExecutiveInfo);
+            }
+        }
+        [HttpPost]
+        [ActionName("ListOfExecutiveAvailableForCustomerView")]
+        public IActionResult ListOfExecutiveAvailableForCustomerViewPost()
+        {
+            string SearchCity = Request.Form["City"];
+            TempData["Result"] = SearchCity;
+            return RedirectToAction("GetExecutivesByCity");
         }
     }
 }

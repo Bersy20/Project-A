@@ -390,3 +390,4 @@ D:\SOFTURA\Technical Training\Project-Delivery Booking System\Delivery Booking S
 D:\SOFTURA\Technical Training\Project-Delivery Booking System\Delivery Booking System\DeliveryBookingSystemMVCClient\obj\Debug\net5.0\ref\DeliveryBookingSystemMVCClient.dll
 D:\SOFTURA\Technical Training\Project-Delivery Booking System\Delivery Booking System\DeliveryBookingSystemMVCClient\obj\Debug\net5.0\DeliveryBookingSystemMVCClient.pdb
 D:\SOFTURA\Technical Training\Project-Delivery Booking System\Delivery Booking System\DeliveryBookingSystemMVCClient\obj\Debug\net5.0\DeliveryBookingSystemMVCClient.genruntimeconfig.cache
+D:\SOFTURA\Technical Training\Project-Delivery Booking System\Delivery Booking System\DeliveryBookingSystemMVCClient\obj\Debug\net5.0\Razor\Views\Executive\GetExecutivesByCity.cshtml.g.cs

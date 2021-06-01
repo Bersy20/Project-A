@@ -52,6 +52,7 @@ namespace DeliveryBookingProjectMVC.Controllers
         [HttpPost]
         public async Task<ActionResult> AddBooking(Booking booking)
         {
+
             try
             {
                 booking.Price = CalculatePrice(booking.WeightOfPackage);
@@ -69,7 +70,7 @@ namespace DeliveryBookingProjectMVC.Controllers
             }
            catch(Exception e)
             {
-                ViewBag.error = "Please Enter Valid Customer Id";
+                ViewBag.error = "Please Enter Valid Details";
                 return View();
                 //return RedirectToAction("ErrorPage","Home");               
             }

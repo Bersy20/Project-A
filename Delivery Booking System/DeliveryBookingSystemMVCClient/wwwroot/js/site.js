@@ -1,4 +1,10 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
-
-// Write your JavaScript code.
+﻿$(function MinDate() {
+    $(document).ready(function () {
+        var todaysDate = new Date();
+        var year = todaysDate.getFullYear();
+        var month = ("0" + (todaysDate.getMonth() + 1)).slice(-2);
+        var day = ("0" + todaysDate.getDate()).slice(-2);
+        var minDate = (year + "-" + month + "-" + day);
+        $('.inspectionDate input').attr('min', minDate);
+    });
+});

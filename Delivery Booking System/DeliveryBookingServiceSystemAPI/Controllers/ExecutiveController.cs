@@ -70,7 +70,20 @@ namespace DeliveryBookingServiceSystemAPI.Controllers
         [Route("WithStatusCheck")]
         public async Task<ActionResult<IEnumerable<Executive>>> GetExecutiveIdWithStatusCheck()
         {
-            var executive = _context.Executives.Where(e => e.ExecutiveStatus == "Available").ToList();
+            var executive = _context.Executives.Where(e => e.ExecutiveStatus == "Available" && e.IsVerified==true ).ToList();
+            if (executive == null)
+            {
+                return NotFound();
+            }
+
+            return executive;
+
+        }
+        [HttpGet]
+        [Route("WithCity")]
+        public async Task<ActionResult<IEnumerable<Executive>>> GetExecutiveIdWithCity(string city)
+        {
+            var executive = _context.Executives.Where(e => e.ExecutiveStatus == "Available" && e.IsVerified == true && e.City==city).ToList();
             if (executive == null)
             {
                 return NotFound();

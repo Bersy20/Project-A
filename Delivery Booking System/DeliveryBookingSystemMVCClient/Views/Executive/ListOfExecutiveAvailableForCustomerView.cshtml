@@ -2,49 +2,54 @@
 
 @{
     ViewData["Title"] = "List Of Executive For Customers";
-        Layout = "~/Views/Shared/CustomerLayout.cshtml";
+    Layout = "~/Views/Shared/CustomerLayout.cshtml";
 
 }
 
 <h1>Select the correct Executive from the following: </h1>
 
+    <form method="post">
+        <input type="text" name="City"  />
+        <input type="submit" value="Search" class="btn btn-secondary"  />
+    </form>
+<br/>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.ExecutiveId)
+                </th>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.ExecutiveId)
-            </th>
-          
-            <th>
-                @Html.DisplayNameFor(model => model.Phone)
-            </th>
-           <th>
-                @Html.DisplayNameFor(model => model.City)
-            </th>
-           
-            
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ExecutiveId)
-            </td>
-            
-            <td>
-                @Html.DisplayFor(modelItem => item.Phone)
-            </td>
-           
-            <td>
-                @Html.DisplayFor(modelItem => item.City)
-            </td>
-            <td>
-                @Html.ActionLink("Select", "AddBooking", "Booking",new { id=item.ExecutiveId})
-            </td>
-           
-        </tr>
-}
-    </tbody>
-</table>
+                <th>
+                    @Html.DisplayNameFor(model => model.Phone)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.City)
+                </th>
+
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ExecutiveId)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Phone)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.City)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Select", "AddBooking", "Booking", new { id = item.ExecutiveId })
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>

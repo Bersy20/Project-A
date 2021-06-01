@@ -16,10 +16,7 @@
                 <label asp-for="CustomerId"><h5>Enter Your ID</h5></label>
                 <input asp-for="CustomerId" class="form-control" />
                 <br />
-                @if (ViewBag.error != null)
-                {
-                    <span class="badge badge-danger">@ViewBag.error</span>
-                }
+
             </div>
             <div class="form-group">
                 <label asp-for="ExecutiveId"><h5>Enter Executive ID for delivery</h5></label>
@@ -41,7 +38,7 @@
             <br />
             <div class="form-group">
                 <label asp-for="WeightOfPackage"><h5>Enter Weight of Items to be delivered</h5></label>
-                <input asp-for="WeightOfPackage" class="form-control" id="Weight"/>
+                <input asp-for="WeightOfPackage" class="form-control" id="Weight" />
                 <span asp-validation-for="WeightOfPackage" class="text-danger"></span>
             </div>
             <br />
@@ -66,10 +63,14 @@
             <div class="form-group">
                 <label asp-for="Phone"><h5>Enter Your Contact Number</h5></label>
                 <a data-toggle="tooltip" data-placement="bottom" title="Phone Number should be 10 digits">
-                        <input asp-for="Phone" class="form-control" /></a>
+                    <input asp-for="Phone" class="form-control" />
+                </a>
                 <span asp-validation-for="Phone" class="text-danger"></span>
             </div>
-
+            @if (ViewBag.error != null)
+            {
+                <span class="badge badge-danger">@ViewBag.error</span>
+            }
             <br />
             <div class="form-group">
                 <input type="submit" value="Book Now" class="btn btn-primary" onclick="CalculatPrice()" />
@@ -79,14 +80,16 @@
 </div>
 <br />
 <script>
-    function checkDate() {
-        var dateEntered = document.getElementById('Date').value;
-        var myDate = new Date(dateEntered);
-        var today = new Date();
-        if (myDate < Date) {
-            alert('Choose a Valid Date')            
-        }       
-    }
+    //$(function MinDate() {
+    //    $(document).ready(function () {
+    //        var todaysDate = new Date();
+    //        var year = todaysDate.getFullYear();
+    //        var month = ("0" + (todaysDate.getMonth() + 1)).slice(-2);
+    //        var day = ("0" + todaysDate.getDate()).slice(-2);
+    //        var minDate = (year + "-" + month + "-" + day);
+    //        $('.inspectionDate input').attr('min', minDate);
+    //    });
+    //});
     function CalculatPrice() {
         var weight = document.getElementById('Weight').value;
         var tax = weight * 0.02;

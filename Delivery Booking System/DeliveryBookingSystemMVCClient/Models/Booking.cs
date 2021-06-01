@@ -19,7 +19,9 @@ namespace DeliveryBookingSystemMVCClient.Models
         public int ExecutiveId { get; set; }
         [Required(ErrorMessage = "Select Date and Time of Pickup!!")]
         [Display(Name = "Date and Time of PickUp")]
+
         public DateTime DateTimeOfPickUp { get; set; } = DateTime.Now;
+
         [Required(ErrorMessage = "Enter the weight!!")]
         [Display(Name = "Weight Of Package(in Kg)")]
         public float WeightOfPackage { get; set; }
