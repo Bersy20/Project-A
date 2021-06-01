@@ -9,9 +9,11 @@ namespace DeliveryBookingSystemMVCClient.Models
     public class Customer
     {
         [Key]
+        [Display(Name = "Customer Id")]
         public int CustomerId { get; set; }
         [Required(ErrorMessage = "Enter your Name!!")]
         [RegularExpression("[a-zA-Z ]*",ErrorMessage ="Special Characters are not allowed")]
+        [Display(Name = "Customer Name")]
         public string CustomerName { get; set; }
         [Required(ErrorMessage ="Password cannot be empty!!")]
         public string Password { get; set; }
@@ -26,6 +28,7 @@ namespace DeliveryBookingSystemMVCClient.Models
         public string City { get; set; }
         [Required(ErrorMessage = "Enter Pincode!!")]
         public int PinCode { get; set; }
+        [Display(Name = "Verification Status")]
         public bool IsVerified { get; set; }
     }
 }

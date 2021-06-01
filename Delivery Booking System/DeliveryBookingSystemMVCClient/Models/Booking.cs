@@ -9,16 +9,21 @@ namespace DeliveryBookingSystemMVCClient.Models
     public class Booking
     {
         [Key]
+        [Display(Name ="Booking Id")]
         public int BookingId { get; set; }
        [Required(ErrorMessage = "CustomerId cannot be empty")]
+        [Display(Name = "Customer Id")]
         public int CustomerId { get; set; }
         [Required(ErrorMessage = "ExecutiveId cannot be empty!!")]
+        [Display(Name = "Executive Id")]
         public int ExecutiveId { get; set; }
         [Required(ErrorMessage = "Select Date and Time of Pickup!!")]
+        [Display(Name = "Date and Time of PickUp")]
         public DateTime DateTimeOfPickUp { get; set; }
-        //[Required(ErrorMessage = "Enter the weight!!")]
+        [Required(ErrorMessage = "Enter the weight!!")]
+        [Display(Name = "Weight Of Package")]
         public string WeightOfPackage { get; set; }
-        //[Required(ErrorMessage = "Address cannot be empty!!")]
+        [Required(ErrorMessage = "Address cannot be empty!!")]
         public string Address { get; set; }
         [Required(ErrorMessage = "City cannot be empty!!")]
         public string City { get; set; }
@@ -29,6 +34,7 @@ namespace DeliveryBookingSystemMVCClient.Models
         [RegularExpression("^[0-9]*$", ErrorMessage = "Should be a number!!")]
         public string Phone { get; set; }
         public string Price { get; set; }= "Rs 1000";
+        [Display(Name = "Delivery Status")]
         public string DeliveryStatus { get; set; } = "Open";
     }
 }
