@@ -35,10 +35,9 @@ namespace DeliveryBookingSystemMVCClient.Controllers
                     var obj = JsonConvert.DeserializeObject<Customer>(apiResponse);
                     //TempData["CustomerId"] = obj.CustomerId;
                     TempData["CustId"] = obj.CustomerId;
-
-
                 }
             }
+            TempData["Success"] = "You have sucessfully Registered...";
             return RedirectToAction("LoginCustomer");
         }
         [HttpGet]
@@ -82,7 +81,6 @@ namespace DeliveryBookingSystemMVCClient.Controllers
                     }
                 }
             }
-            return RedirectToAction("ErrorPage");
         }
         public async Task<ActionResult> ListOfCustomers()
         {

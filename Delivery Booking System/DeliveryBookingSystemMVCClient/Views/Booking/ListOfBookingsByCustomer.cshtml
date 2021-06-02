@@ -2,13 +2,17 @@
 
 @{
     ViewData["Title"] = "ListOfBookingsByCustomer";
-        Layout = "~/Views/Shared/CustomerLayout.cshtml";
+    Layout = "~/Views/Shared/CustomerLayout.cshtml";
 
 }
 
 <h1>List Of Bookings By Customer</h1>
 
+<br />
 
+    <span class="badge badge-danger">@TempData["Error"]</span>
+
+<br/>
 <table class="table">
     <thead>
         <tr>
@@ -49,46 +53,47 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.BookingId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CustomerId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ExecutiveId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateTimeOfPickUp)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.WeightOfPackage)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Address)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.City)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PinCode)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Phone)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DeliveryStatus)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "EditBookingDetails", new { id = item.BookingId }) |
-                @Html.ActionLink("Cancel Booking", "CancelBooking", new { id = item.BookingId })
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BookingId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ExecutiveId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateTimeOfPickUp)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WeightOfPackage)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.City)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PinCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Phone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DeliveryStatus)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "EditBookingDetails", new { id = item.BookingId }) |
+                    @Html.ActionLink("Cancel Booking", "CancelBooking", new { id = item.BookingId })
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

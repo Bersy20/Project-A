@@ -43,10 +43,10 @@ namespace DeliveryBookingProjectMVC.Controllers
             booking.ExecutiveId = Convert.ToInt32(TempData.Peek("ExecId"));
             return View(booking);
         }
-        public float CalculatePrice(float weight)
+        public decimal CalculatePrice(decimal weight)
         {
-            float tax = weight * 2/100;
-            float price = (weight * 100) + (tax);
+            decimal tax = weight * 2/100;
+            decimal price = (weight * 100) + (tax);
             return price;
         }
         [HttpPost]
@@ -55,7 +55,7 @@ namespace DeliveryBookingProjectMVC.Controllers
 
             try
             {
-                booking.Price = CalculatePrice(booking.WeightOfPackage);
+                booking.Price = CalculatePrice(Convert.ToDecimal(booking.WeightOfPackage));
                 using (var httpClient = new HttpClient())
                 {
                     StringContent content = new StringContent(JsonConvert.SerializeObject(booking), Encoding.UTF8, "application/json");
@@ -66,6 +66,7 @@ namespace DeliveryBookingProjectMVC.Controllers
                         TempData["BookingId"] = obj.BookingId;
                     }
                 }
+                TempData["Success"] = "You have sucessfully Registered...";
                 return RedirectToAction("ViewBookingDetails");
             }
            catch(Exception e)
@@ -99,23 +100,30 @@ namespace DeliveryBookingProjectMVC.Controllers
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     booking = JsonConvert.DeserializeObject<Booking>(apiResponse);
                     TempData["BookingId"] = booking.BookingId;
+                    if (booking.DeliveryStatus == "Open")
+                        return View(booking);
+                    else
+                    {
+                        TempData["Error"] = "You cannot cancel booking when delivery is on progress..";
+                        return RedirectToAction("ListOfBookingsByCustomer");
+                    }
                 }
             }
-            return View(booking);
         }
 
         [HttpPost]
         public async Task<ActionResult> CancelBooking(Booking booking)
         {
             int BookingId = Convert.ToInt32(TempData.Peek("BookingId"));
-            using (var httpClient = new HttpClient())
-            {
-                using (var response = await httpClient.DeleteAsync("http://localhost:27527/api/Booking/" + BookingId))
+                using (var httpClient = new HttpClient())
                 {
-                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    using (var response = await httpClient.DeleteAsync("http://localhost:27527/api/Booking/" + BookingId))
+                    {
+                        string apiResponse = await response.Content.ReadAsStringAsync();
+                    }
                 }
-            }
-            return RedirectToAction("ListOfBookingsByCustomer");
+                return RedirectToAction("ListOfBookingsByCustomer");
+          
         }
         public async Task<ActionResult> EditBookingDetails(int id)
         {

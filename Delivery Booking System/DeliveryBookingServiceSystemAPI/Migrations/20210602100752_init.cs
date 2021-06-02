@@ -62,7 +62,7 @@ namespace DeliveryBookingServiceSystemAPI.Migrations
                     City = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PinCode = table.Column<int>(type: "int", nullable: false),
                     Phone = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Price = table.Column<float>(type: "real", nullable: false),
+                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     DeliveryStatus = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>

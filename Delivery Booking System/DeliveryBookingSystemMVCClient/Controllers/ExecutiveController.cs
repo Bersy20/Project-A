@@ -33,6 +33,7 @@ namespace DeliveryBookingSystemMVCClient.Controllers
                     TempData["ExId"] = obj.ExecutiveId;
                 }
             }
+            TempData["Success"] = "You have sucessfully Registered...";
             return RedirectToAction("LoginExecutive");
         }
         [HttpGet]
@@ -73,7 +74,6 @@ namespace DeliveryBookingSystemMVCClient.Controllers
                     }
                 }
             }
-            return RedirectToAction("ErrorPage","Home");
         }
         [HttpGet]
         
@@ -120,22 +120,37 @@ namespace DeliveryBookingSystemMVCClient.Controllers
         }
         public async Task<ActionResult> EditExecutiveStatus(int id)
         {
-            TempData["ExecutiveId"] = id;
-            Executive b = new Executive();
+            id= Convert.ToInt32(TempData["ExecutiveId"]) ;
+            Executive executive = new Executive();
             using (var httpClient = new HttpClient())
             {
                 using (var response = await httpClient.GetAsync("http://localhost:27527/api/Executive/" + id))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    b = JsonConvert.DeserializeObject<Executive>(apiResponse);
+                    executive = JsonConvert.DeserializeObject<Executive>(apiResponse);
+                    TempData["ExecutiveId"] = executive.ExecutiveId;
+                    TempData["ExecutiveName"] = executive.ExecutiveName;
+                    TempData["Address"] = executive.Address;
+                    TempData["Age"] = executive.Age;
+                    TempData["ExecutiveStatus"] = executive.ExecutiveStatus;
+                    TempData["City"] = executive.City;
+                    TempData["Phone"] = executive.Phone;
+
                 }
             }
-            return View(b);
+            return View(executive);
         }
         [HttpPost]
         public async Task<ActionResult> EditExecutiveStatus(Executive b)
         {
             int ExecutiveId = Convert.ToInt32(TempData["ExecutiveId"]);
+            string ExecutiveName = TempData["ExecutiveName"].ToString();
+            string Address = TempData["Address"].ToString();
+            int Age = Convert.ToInt32(TempData["Age"]);
+            string ExecutiveStatus = TempData["ExecutiveStatus"].ToString();
+            string City = TempData["City"].ToString();
+            string Phone = TempData["Phone"].ToString();
+
             using (var httpClient = new HttpClient())
             {
                 StringContent content = new StringContent(JsonConvert.SerializeObject(b), Encoding.UTF8, "application/json");
@@ -146,7 +161,7 @@ namespace DeliveryBookingSystemMVCClient.Controllers
                     var obj = JsonConvert.DeserializeObject<Executive>(apiResponse);
                 }
             }
-            return RedirectToAction("ListOfExecutive");
+            return RedirectToAction("ExecutivePage");
         }
         public async Task<ActionResult> EditExecutiveDetails(int id)
         {
@@ -178,6 +193,7 @@ namespace DeliveryBookingSystemMVCClient.Controllers
             }
             return RedirectToAction("ListOfExecutive");
         }
+
         public async Task<ActionResult> DeleteExecutiveDetails(int id)
         {
             TempData["ExecutiveId"] = id;

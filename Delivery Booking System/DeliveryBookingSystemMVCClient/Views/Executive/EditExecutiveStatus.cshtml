@@ -2,7 +2,7 @@
 
 @{
     ViewData["Title"] = "EditExecutiveStatus";
-    Layout = "~/Views/Shared/AdminLayout.cshtml";
+    Layout = "~/Views/Shared/ExecutiveLayout.cshtml";
 }
 
 <h1>Edit Executive Status</h1>
@@ -52,13 +52,17 @@
                 <input asp-for="PinCode" class="form-control" />
                 <span asp-validation-for="PinCode" class="text-danger"></span>
             </div>
-
+            <div class="form-group">
+                <label asp-for="IsVerified" class="control-label"></label>
+                <input type="checkbox" asp-for="IsVerified" class="form-control" onclick="event.preventDefault();" />
+                <span asp-validation-for="IsVerified" class="text-danger"></span>
+            </div>
             <div class="form-group">
                 <label asp-for="ExecutiveStatus" class="control-label"></label>
                 @Html.DropDownList("ExecutiveStatus", new List<SelectListItem>
              {
                  new SelectListItem(){ Text = "Available", Value = "Available"},
-               
+
                  new SelectListItem(){ Text = "Not Available", Value = "Not Available" }
              }, "---Select DeliveryStatus---", new { @class = "form-control" })
                 <span asp-validation-for="ExecutiveStatus" class="text-danger"></span>

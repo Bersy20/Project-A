@@ -21,7 +21,7 @@ namespace DeliveryBookingServiceSystemAPI.Models
         public string City { get; set; }
         public int PinCode { get; set; }
         public string Phone { get; set; }
-        public float Price { get; set; }= 1000;
+        public decimal Price { get; set; }= 1000;
         public string DeliveryStatus { get; set; } = "Open";
        
     }

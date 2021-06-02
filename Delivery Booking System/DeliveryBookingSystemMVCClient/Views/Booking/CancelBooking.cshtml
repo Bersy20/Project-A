@@ -2,16 +2,19 @@
 
 @{
     ViewData["Title"] = "CancelBooking";
-        Layout = "~/Views/Shared/CustomerLayout.cshtml";
+    Layout = "~/Views/Shared/CustomerLayout.cshtml";
 
 }
+
+
 
 <h1>Cancel Booking</h1>
 
 <h3>Are you sure you want to delete this?</h3>
 <div>
-  
+
     <hr />
+
     <dl class="row">
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.BookingId)
@@ -74,9 +77,9 @@
             @Html.DisplayFor(model => model.Price)
         </dd>
     </dl>
-    
+
     <form asp-action="CancelBooking">
         <input type="submit" value="Cancel Booking" class="btn btn-danger" /> |
-       
+
     </form>
 </div>

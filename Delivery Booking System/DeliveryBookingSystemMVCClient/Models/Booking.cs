@@ -36,7 +36,7 @@ namespace DeliveryBookingSystemMVCClient.Models
         [RegularExpression("^[0-9]*$", ErrorMessage = "Should be a number!!")]
         public string Phone { get; set; }
         [Display(Name = "Price(in Rs)")]
-        public float Price { get; set; }
+        public decimal Price { get; set; }
         [Display(Name = "Delivery Status")]
         public string DeliveryStatus { get; set; } = "Open";
     }
