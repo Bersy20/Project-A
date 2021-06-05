@@ -49,6 +49,7 @@ namespace DeliveryBookingProjectMVC.Controllers
             decimal price = (weight * 100) + (tax);
             return price;
         }
+        
         [HttpPost]
         public async Task<ActionResult> AddBooking(Booking booking)
         {
@@ -66,10 +67,10 @@ namespace DeliveryBookingProjectMVC.Controllers
                         TempData["BookingId"] = obj.BookingId;
                     }
                 }
-                TempData["Success"] = "You have sucessfully Registered...";
+                TempData["Success"] = "You are sucessfully Booked for Delivery...";
                 return RedirectToAction("ViewBookingDetails");
             }
-           catch(Exception e)
+           catch(Exception)
             {
                 ViewBag.error = "Please Enter Valid Details";
                 return View();

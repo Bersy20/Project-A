@@ -38,7 +38,7 @@
             <br />
             <div class="form-group">
                 <label asp-for="WeightOfPackage"><h5>Enter Weight of Items to be delivered</h5></label>
-                <input asp-for="WeightOfPackage" class="form-control" id="Weight" />
+                <input asp-for="WeightOfPackage" class="form-control" id="Weight" onclick="CheckDate()"/>
                 <span asp-validation-for="WeightOfPackage" class="text-danger"></span>
             </div>
             <br />
@@ -80,21 +80,19 @@
 </div>
 <br />
 <script>
-    //$(function MinDate() {
-    //    $(document).ready(function () {
-    //        var todaysDate = new Date();
-    //        var year = todaysDate.getFullYear();
-    //        var month = ("0" + (todaysDate.getMonth() + 1)).slice(-2);
-    //        var day = ("0" + todaysDate.getDate()).slice(-2);
-    //        var minDate = (year + "-" + month + "-" + day);
-    //        $('.inspectionDate input').attr('min', minDate);
-    //    });
-    //});
+
+    function CheckDate() {
+                var dataEntered = document.getElementById('Date').value;
+                var myDate = new Date(dataEntered);
+        var today = new Date();
+        if (myDate < today)
+            alert('Please Choose valid date');
+            }
     function CalculatPrice() {
         var weight = document.getElementById('Weight').value;
         var tax = weight * 0.02;
         var price = (weight * 100) + (tax);
-        alert("The amount for delivery is " + price + " Are you sure to Confirm Booking?")
+        alert("The amount for delivery is " + price + " Are you sure to Confirm Booking?");      
     }
 </script>
 <script>
