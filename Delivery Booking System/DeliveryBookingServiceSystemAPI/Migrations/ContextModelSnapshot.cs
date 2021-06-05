@@ -47,14 +47,14 @@ namespace DeliveryBookingServiceSystemAPI.Migrations
                     b.Property<string>("Phone")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PinCode")
-                        .HasColumnType("int");
+                    b.Property<string>("PinCode")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<float>("WeightOfPackage")
-                        .HasColumnType("real");
+                    b.Property<double>("WeightOfPackage")
+                        .HasColumnType("float");
 
                     b.HasKey("BookingId");
 
@@ -93,8 +93,8 @@ namespace DeliveryBookingServiceSystemAPI.Migrations
                     b.Property<string>("Phone")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PinCode")
-                        .HasColumnType("int");
+                    b.Property<string>("PinCode")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CustomerId");
 
@@ -111,7 +111,7 @@ namespace DeliveryBookingServiceSystemAPI.Migrations
                             IsVerified = true,
                             Password = "1234",
                             Phone = "7598377137",
-                            PinCode = 635126
+                            PinCode = "635126"
                         });
                 });
 
@@ -146,8 +146,8 @@ namespace DeliveryBookingServiceSystemAPI.Migrations
                     b.Property<string>("Phone")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PinCode")
-                        .HasColumnType("int");
+                    b.Property<string>("PinCode")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ExecutiveId");
 
@@ -165,7 +165,7 @@ namespace DeliveryBookingServiceSystemAPI.Migrations
                             IsVerified = true,
                             Password = "Admin",
                             Phone = "9443354155",
-                            PinCode = 600006
+                            PinCode = "600006"
                         });
                 });
 

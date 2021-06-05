@@ -2,7 +2,7 @@
 
 @{
     ViewData["Title"] = "RegisterCustomer";
-
+    Layout = "~/Views/Shared/HomePage.cshtml";
 }
 
 <h1>Customer Registration</h1>
@@ -20,6 +20,11 @@
                 <label asp-for="Password" class="control-label"></label>
                 @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
                 <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ConfirmPassword" class="control-label"></label>
+                @Html.PasswordFor(model => model.ConfirmPassword, new { @class = "form-control" })
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Age" class="control-label"></label>

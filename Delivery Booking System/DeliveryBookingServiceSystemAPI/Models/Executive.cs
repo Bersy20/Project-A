@@ -16,7 +16,7 @@ namespace DeliveryBookingServiceSystemAPI.Models
         public string Phone { get; set; }
         public string Address { get; set; }
         public string City { get; set; }
-        public int PinCode { get; set; }
+        public string PinCode { get; set; }
         public bool IsVerified { get; set; }
         public string ExecutiveStatus { get; set; } = "Available";
         public List<Booking> Bookings { get; set; }

@@ -55,20 +55,20 @@ namespace DeliveryBookingProjectMVC.Controllers
         {
 
             try
-            {
-                booking.Price = CalculatePrice(Convert.ToDecimal(booking.WeightOfPackage));
-                using (var httpClient = new HttpClient())
-                {
-                    StringContent content = new StringContent(JsonConvert.SerializeObject(booking), Encoding.UTF8, "application/json");
-                    using (var response = await httpClient.PostAsync("http://localhost:27527/api/Booking/AddBooking", content))
-                    {
-                        string apiResponse = await response.Content.ReadAsStringAsync();
-                        var obj = JsonConvert.DeserializeObject<Booking>(apiResponse);
-                        TempData["BookingId"] = obj.BookingId;
-                    }
-                }
-                TempData["Success"] = "You are sucessfully Booked for Delivery...";
-                return RedirectToAction("ViewBookingDetails");
+            {  
+                 booking.Price = CalculatePrice(Convert.ToDecimal(booking.WeightOfPackage));
+                 using (var httpClient = new HttpClient())
+                 {
+                     StringContent content = new StringContent(JsonConvert.SerializeObject(booking), Encoding.UTF8, "application/json");
+                     using (var response = await httpClient.PostAsync("http://localhost:27527/api/Booking/AddBooking", content))
+                     {
+                         string apiResponse = await response.Content.ReadAsStringAsync();
+                         var obj = JsonConvert.DeserializeObject<Booking>(apiResponse);
+                         TempData["BookingId"] = obj.BookingId;
+                     }
+                 }
+                 TempData["Success"] = "You are sucessfully Booked for Delivery...";
+                 return RedirectToAction("ViewBookingDetails");              
             }
            catch(Exception)
             {

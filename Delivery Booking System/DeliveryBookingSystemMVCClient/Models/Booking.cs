@@ -24,15 +24,18 @@ namespace DeliveryBookingSystemMVCClient.Models
 
         [Required(ErrorMessage = "Enter the weight!!")]
         [Display(Name = "Weight Of Package(in Kg)")]
-        public float WeightOfPackage { get; set; }
+        [Range(1,100,ErrorMessage ="Oops...Only 1 to 100 kg is accepted")]
+        public double WeightOfPackage { get; set; }
         [Required(ErrorMessage = "Address cannot be empty!!")]
         public string Address { get; set; }
         [Required(ErrorMessage = "City cannot be empty!!")]
         public string City { get; set; }
         [Required(ErrorMessage = "Pincode cannot be empty!!")]
-        public int PinCode { get; set; }
+        [MaxLength(6, ErrorMessage = "It exceeded the maximum value")]
+        public string PinCode { get; set; }
         [Required(ErrorMessage = "Enter your phone number!!")]
-        [MaxLength(10,ErrorMessage ="It exceeded the maximum value")]
+        [MaxLength(10, ErrorMessage = "It should be 10 digits")]
+        [MinLength(10, ErrorMessage = "It should be 10 digits")]
         [RegularExpression("^[0-9]*$", ErrorMessage = "Should be a number!!")]
         public string Phone { get; set; }
         [Display(Name = "Price(in Rs)")]

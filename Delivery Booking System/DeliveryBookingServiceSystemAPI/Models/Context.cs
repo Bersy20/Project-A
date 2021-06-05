@@ -31,7 +31,7 @@ namespace DeliveryBookingServiceSystemAPI.Models
                    Phone = "7598377137",
                    Address = "1/271, BTR Nagar, Sipcot",
                    City = "Hosur",
-                   PinCode = 635126,
+                   PinCode = "635126",
                    IsVerified = true
                });
             modelBuilder.Entity<Executive>().HasData(
@@ -44,7 +44,7 @@ namespace DeliveryBookingServiceSystemAPI.Models
                     Phone = "9443354155",
                     Address = "No.61, Anna Nagar",
                     City = "Chennai",
-                    PinCode = 600006,
+                    PinCode = "600006",
                     IsVerified = true,
                     ExecutiveStatus = "Available"
                 });

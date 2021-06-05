@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/CustomerLayout.cshtml";
 
 }
-<h1>Book here For Delivery</h1>
+<h3>Book here For Delivery</h3>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -13,13 +13,13 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
             <div class="form-group">
-                <label asp-for="CustomerId"><h5>Enter Your ID</h5></label>
+                <label asp-for="CustomerId"></label>
                 <input asp-for="CustomerId" class="form-control" />
                 <br />
 
             </div>
             <div class="form-group">
-                <label asp-for="ExecutiveId"><h5>Enter Executive ID for delivery</h5></label>
+                <label asp-for="ExecutiveId"></label>
                 <input asp-for="ExecutiveId" class="form-control" />
                 <span asp-validation-for="ExecutiveId" class="text-danger"></span>
                 <br />
@@ -31,38 +31,38 @@
             </div>
             <br />
             <div class="form-group">
-                <label asp-for="DateTimeOfPickUp"><h5>Select Date and Time for Delivery</h5></label>
+                <label asp-for="DateTimeOfPickUp"></label>
                 <input asp-for="DateTimeOfPickUp" id="Date" class="form-control" />
                 <span asp-validation-for="DateTimeOfPickUp" class="text-danger"></span>
             </div>
             <br />
             <div class="form-group">
-                <label asp-for="WeightOfPackage"><h5>Enter Weight of Items to be delivered</h5></label>
+                <label asp-for="WeightOfPackage"></label>
                 <input asp-for="WeightOfPackage" class="form-control" id="Weight" onclick="CheckDate()"/>
                 <span asp-validation-for="WeightOfPackage" class="text-danger"></span>
             </div>
             <br />
             <div class="form-group">
-                <label asp-for="Address"><h5>Enter Your Address</h5></label>
+                <label asp-for="Address"></label>
                 <input asp-for="Address" class="form-control" />
                 <span asp-validation-for="Address" class="text-danger"></span>
             </div>
             <br />
             <div class="form-group">
-                <label asp-for="City"><h5>Enter Your City</h5></label>
+                <label asp-for="City"></label>
                 <input asp-for="City" class="form-control" />
                 <span asp-validation-for="City" class="text-danger"></span>
             </div>
             <br />
             <div class="form-group">
-                <label asp-for="PinCode"><h5>Enter Pincode</h5></label>
+                <label asp-for="PinCode"></label>
                 <input asp-for="PinCode" class="form-control" />
                 <span asp-validation-for="PinCode" class="text-danger"></span>
             </div>
             <br />
             <div class="form-group">
-                <label asp-for="Phone"><h5>Enter Your Contact Number</h5></label>
-                <a data-toggle="tooltip" data-placement="bottom" title="Phone Number should be 10 digits">
+                <label asp-for="Phone"></label>
+                <a data-toggle="tooltip" data-placement="bottom" title="Phone Number should be 10 digits" >
                     <input asp-for="Phone" class="form-control" />
                 </a>
                 <span asp-validation-for="Phone" class="text-danger"></span>
@@ -73,14 +73,13 @@
             }
             <br />
             <div class="form-group">
-                <input type="submit" value="Book Now" class="btn btn-primary" onclick="CalculatPrice()" />
+                    <input type="submit" value=" Book Now" class="btn btn-primary" onclick="return CalculatPrice();"/> 
             </div>
         </form>
     </div>
 </div>
 <br />
-<script>
-
+<script> 
     function CheckDate() {
                 var dataEntered = document.getElementById('Date').value;
                 var myDate = new Date(dataEntered);
@@ -92,7 +91,11 @@
         var weight = document.getElementById('Weight').value;
         var tax = weight * 0.02;
         var price = (weight * 100) + (tax);
-        alert("The amount for delivery is " + price + " Are you sure to Confirm Booking?");      
+        var result=confirm("The amount for delivery is " + price + " Are you sure to Confirm Booking?");
+        if(result==true)
+            return true;
+        else
+            return false;
     }
 </script>
 <script>

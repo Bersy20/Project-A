@@ -19,7 +19,7 @@ namespace DeliveryBookingServiceSystemAPI.Migrations
                     Phone = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     City = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PinCode = table.Column<int>(type: "int", nullable: false),
+                    PinCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IsVerified = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -39,7 +39,7 @@ namespace DeliveryBookingServiceSystemAPI.Migrations
                     Phone = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     City = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PinCode = table.Column<int>(type: "int", nullable: false),
+                    PinCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IsVerified = table.Column<bool>(type: "bit", nullable: false),
                     ExecutiveStatus = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
@@ -57,10 +57,10 @@ namespace DeliveryBookingServiceSystemAPI.Migrations
                     CustomerId = table.Column<int>(type: "int", nullable: false),
                     ExecutiveId = table.Column<int>(type: "int", nullable: false),
                     DateTimeOfPickUp = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    WeightOfPackage = table.Column<float>(type: "real", nullable: false),
+                    WeightOfPackage = table.Column<double>(type: "float", nullable: false),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     City = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PinCode = table.Column<int>(type: "int", nullable: false),
+                    PinCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Phone = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     DeliveryStatus = table.Column<string>(type: "nvarchar(max)", nullable: true)
@@ -85,12 +85,12 @@ namespace DeliveryBookingServiceSystemAPI.Migrations
             migrationBuilder.InsertData(
                 table: "Customers",
                 columns: new[] { "CustomerId", "Address", "Age", "City", "CustomerName", "IsVerified", "Password", "Phone", "PinCode" },
-                values: new object[] { 1000, "1/271, BTR Nagar, Sipcot", 22, "Hosur", "Bersy", true, "1234", "7598377137", 635126 });
+                values: new object[] { 1000, "1/271, BTR Nagar, Sipcot", 22, "Hosur", "Bersy", true, "1234", "7598377137", "635126" });
 
             migrationBuilder.InsertData(
                 table: "Executives",
                 columns: new[] { "ExecutiveId", "Address", "Age", "City", "ExecutiveName", "ExecutiveStatus", "IsVerified", "Password", "Phone", "PinCode" },
-                values: new object[] { 100, "No.61, Anna Nagar", 32, "Chennai", "Arun", "Available", true, "Admin", "9443354155", 600006 });
+                values: new object[] { 100, "No.61, Anna Nagar", 32, "Chennai", "Arun", "Available", true, "Admin", "9443354155", "600006" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Bookings_CustomerId",

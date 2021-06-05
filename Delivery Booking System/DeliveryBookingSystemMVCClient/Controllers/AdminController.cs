@@ -45,7 +45,6 @@ namespace DeliveryBookingSystemMVCClient.Controllers
 
                 }
             }
-            return RedirectToAction("ErrorPage","Home");
         }
         public ActionResult AdminLoginErrorPage()
         {
