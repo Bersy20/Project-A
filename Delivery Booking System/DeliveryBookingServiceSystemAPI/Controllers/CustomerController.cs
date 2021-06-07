@@ -118,8 +118,17 @@ namespace DeliveryBookingServiceSystemAPI.Controllers
         {
             if (Verification(customer))
             {
-                if (Login(customer))
+                try
+                {
+                    customer = _context.Customers.SingleOrDefault(u => u.CustomerEmail == customer.CustomerEmail && u.Password == customer.Password);
+                    if (customer == null)
+                        return NotFound();
                     return customer;
+                }
+                catch (Exception)
+                {
+                    return NotFound();
+                }
             }
             return NotFound();
         }
@@ -144,30 +153,12 @@ namespace DeliveryBookingServiceSystemAPI.Controllers
         {
             return _context.Customers.Any(e => e.CustomerId == id);
         }
-        private bool Login(Customer customer)
-        {
-            if (Verification(customer))
-            {
-                try
-                {
-                    customer = _context.Customers.SingleOrDefault(u => u.CustomerId == customer.CustomerId && u.Password == customer.Password);
-                    if (customer == null)
-                        return false;
-                    return true;
-                }
-                catch (Exception)
-                {
-                    return false;
-                }
-                return false;
-            }
-            return false;
-        }
+        
         private bool Verification(Customer customer)
         {
             try
             {
-                customer = _context.Customers.SingleOrDefault(u => u.CustomerId == customer.CustomerId);
+                customer = _context.Customers.SingleOrDefault(u => u.CustomerEmail == customer.CustomerEmail);
                 if (customer == null)
                     return false;
                 else
@@ -181,7 +172,6 @@ namespace DeliveryBookingServiceSystemAPI.Controllers
             {
                 return false;
             }
-            return false;
         }
 
     }

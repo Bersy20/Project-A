@@ -17,7 +17,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.CustomerName)
             </th>
-           
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerEmail)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Age)
             </th>
@@ -48,7 +50,9 @@
             <td>
                 @Html.DisplayFor(modelItem => item.CustomerName)
             </td>
-           
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerEmail)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Age)
             </td>
@@ -68,9 +72,9 @@
                 @Html.DisplayFor(modelItem => item.IsVerified)
             </td>
             <td>
-                @Html.ActionLink("Edit", "EditCustomerDetails", new { id=item.CustomerId}) |
-               
-                @Html.ActionLink("Delete", "DeleteCustomerDetails", new { id=item.CustomerId})
+                @Html.ActionLink("Edit", "EditCustomerDetails", new { id = item.CustomerId }) |
+
+                @Html.ActionLink("Delete", "DeleteCustomerDetails", new { id = item.CustomerId })
             </td>
         </tr>
 }

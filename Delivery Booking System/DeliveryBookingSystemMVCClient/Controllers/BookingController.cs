@@ -35,12 +35,13 @@ namespace DeliveryBookingProjectMVC.Controllers
             }
         }
         [HttpGet]
-        public ActionResult AddBooking(int id)
+        public ActionResult AddBooking(int id,string city)
         {
             Booking booking = new Booking();
             booking.CustomerId = Convert.ToInt32(TempData.Peek("CustomerId"));
             TempData["ExecId"] = id;
             booking.ExecutiveId = Convert.ToInt32(TempData.Peek("ExecId"));
+            TempData["ExecCity"] = city;
             return View(booking);
         }
         public decimal CalculatePrice(decimal weight)
@@ -53,28 +54,35 @@ namespace DeliveryBookingProjectMVC.Controllers
         [HttpPost]
         public async Task<ActionResult> AddBooking(Booking booking)
         {
-
             try
-            {  
-                 booking.Price = CalculatePrice(Convert.ToDecimal(booking.WeightOfPackage));
-                 using (var httpClient = new HttpClient())
-                 {
-                     StringContent content = new StringContent(JsonConvert.SerializeObject(booking), Encoding.UTF8, "application/json");
-                     using (var response = await httpClient.PostAsync("http://localhost:27527/api/Booking/AddBooking", content))
-                     {
-                         string apiResponse = await response.Content.ReadAsStringAsync();
-                         var obj = JsonConvert.DeserializeObject<Booking>(apiResponse);
-                         TempData["BookingId"] = obj.BookingId;
-                     }
-                 }
-                 TempData["Success"] = "You are sucessfully Booked for Delivery...";
-                 return RedirectToAction("ViewBookingDetails");              
+            {
+                string ExecCity = TempData.Peek("ExecCity").ToString();
+                if (booking.City != ExecCity)
+                {
+                    TempData["cityAlert"] = "Oops the selected Executive does not match with Your City...";
+                    return View();
+                }
+                else
+                {
+                    booking.Price = CalculatePrice(Convert.ToDecimal(booking.WeightOfPackage));
+                    using (var httpClient = new HttpClient())
+                    {
+                        StringContent content = new StringContent(JsonConvert.SerializeObject(booking), Encoding.UTF8, "application/json");
+                        using (var response = await httpClient.PostAsync("http://localhost:27527/api/Booking/AddBooking", content))
+                        {
+                            string apiResponse = await response.Content.ReadAsStringAsync();
+                            var obj = JsonConvert.DeserializeObject<Booking>(apiResponse);
+                            TempData["BookingId"] = obj.BookingId;
+                        }
+                    }
+                    TempData["Success"] = "You are sucessfully Booked for Delivery...";
+                    return RedirectToAction("ViewBookingDetails");
+                }
             }
            catch(Exception)
             {
                 ViewBag.error = "Please Enter Valid Details";
                 return View();
-                //return RedirectToAction("ErrorPage","Home");               
             }
         }
         public async Task<ActionResult> ViewBookingDetails(Booking booking)
@@ -162,7 +170,6 @@ namespace DeliveryBookingProjectMVC.Controllers
             Executive executive = new Executive();
             var BookingInfo = new List<Booking>();
             int ExecutiveId = Convert.ToInt32(TempData.Peek("ExecutiveId"));
-            //int BookingId = Convert.ToInt32(TempData["BookingId"]);
             using (var httpClient = new HttpClient())
             {
 
@@ -264,7 +271,6 @@ namespace DeliveryBookingProjectMVC.Controllers
             Executive executive = new Executive();
             var BookingInfo = new List<Booking>();
             int ExecutiveId = Convert.ToInt32(TempData.Peek("ExecutiveId"));
-            //int BookingId = Convert.ToInt32(TempData["BookingId"]);
             using (var httpClient = new HttpClient())
             {
 
@@ -281,7 +287,6 @@ namespace DeliveryBookingProjectMVC.Controllers
             Executive executive = new Executive();
             var BookingInfo = new List<Booking>();
             int ExecutiveId = Convert.ToInt32(TempData.Peek("ExecutiveId"));
-            //int BookingId = Convert.ToInt32(TempData["BookingId"]);
             using (var httpClient = new HttpClient())
             {
 

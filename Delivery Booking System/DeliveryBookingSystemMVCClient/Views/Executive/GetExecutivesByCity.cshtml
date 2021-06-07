@@ -15,7 +15,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.ExecutiveName)
             </th>
-
+            <th>
+                @Html.DisplayNameFor(model => model.ExecutiveEmail)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Phone)
             </th>
@@ -31,27 +33,29 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ExecutiveId)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ExecutiveName)
-                </td>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExecutiveId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExecutiveName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExecutiveEmail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone)
+            </td>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.Phone)
-                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.City)
+            </td>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.City)
-                </td>
+            <td>
+                @Html.ActionLink("Select", "AddBooking", "Booking", new { id = item.ExecutiveId })
 
-                <td>
-                    @Html.ActionLink("Select", "AddBooking", "Booking", new { id = item.ExecutiveId })
-
-                </td>
-            </tr>
+            </td>
+        </tr>
         }
     </tbody>
 </table>

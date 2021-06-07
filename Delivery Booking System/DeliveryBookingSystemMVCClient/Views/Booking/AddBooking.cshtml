@@ -14,9 +14,9 @@
 
             <div class="form-group">
                 <label asp-for="CustomerId"></label>
-                <input asp-for="CustomerId" class="form-control" />
+                <input asp-for="CustomerId" class="form-control" readonly />
+                <span asp-validation-for="CustomerId" class="text-danger"></span>
                 <br />
-
             </div>
             <div class="form-group">
                 <label asp-for="ExecutiveId"></label>
@@ -25,7 +25,7 @@
                 <br />
                 <div>
                     <a asp-controller="Executive" asp-action="ListOfExecutiveAvailableForCustomerView">
-                        <span class="badge badge-info" style="font-size:medium">*Click Here To Select Executive For Delivery</span>
+                        <span class="badge badge-light" style="font-size:medium">*Click Here To Select Executive For Delivery</span>
                     </a>
                 </div>
             </div>
@@ -38,7 +38,7 @@
             <br />
             <div class="form-group">
                 <label asp-for="WeightOfPackage"></label>
-                <input asp-for="WeightOfPackage" class="form-control" id="Weight" onclick="CheckDate()"/>
+                <input asp-for="WeightOfPackage" class="form-control" id="Weight" onclick="CheckDate()" />
                 <span asp-validation-for="WeightOfPackage" class="text-danger"></span>
             </div>
             <br />
@@ -62,7 +62,7 @@
             <br />
             <div class="form-group">
                 <label asp-for="Phone"></label>
-                <a data-toggle="tooltip" data-placement="bottom" title="Phone Number should be 10 digits" >
+                <a data-toggle="tooltip" data-placement="bottom" title="Phone Number should be 10 digits">
                     <input asp-for="Phone" class="form-control" />
                 </a>
                 <span asp-validation-for="Phone" class="text-danger"></span>
@@ -72,9 +72,14 @@
                 <span class="badge badge-danger">@ViewBag.error</span>
             }
             <br />
+            <span class="text-danger font-weight-bolder">@TempData["cityAlert"]</span>
+            <br />
+            <br />
+            <br />
             <div class="form-group">
-                    <input type="submit" value=" Book Now" class="btn btn-primary" onclick="return CalculatPrice();"/> 
+                <input type="submit" value=" Book Now" class="btn btn-primary" onclick="return CalculatPrice();" />
             </div>
+
         </form>
     </div>
 </div>

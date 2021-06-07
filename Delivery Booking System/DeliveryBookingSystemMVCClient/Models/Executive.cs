@@ -15,6 +15,8 @@ namespace DeliveryBookingSystemMVCClient.Models
         [RegularExpression("[a-zA-Z ]*", ErrorMessage = "Special Characters are not allowed")]
         [Display(Name = "Executive Name")]
         public string ExecutiveName { get; set; }
+        [Display(Name = "Username (Email ID)")]
+        public string ExecutiveEmail { get; set; }
         [Required(ErrorMessage = "Password cannot be empty!!")]
         [MinLength(4, ErrorMessage = "It should have atleast 4 characters")]
         public string Password { get; set; }

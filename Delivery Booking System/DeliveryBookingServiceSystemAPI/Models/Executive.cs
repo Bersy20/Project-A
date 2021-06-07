@@ -12,6 +12,7 @@ namespace DeliveryBookingServiceSystemAPI.Models
         public int ExecutiveId { get; set; }
         public string ExecutiveName { get; set; }
         public string Password { get; set; }
+        public string ExecutiveEmail { get; set; }
         public int Age { get; set; }
         public string Phone { get; set; }
         public string Address { get; set; }

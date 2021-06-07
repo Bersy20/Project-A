@@ -21,6 +21,8 @@ namespace DeliveryBookingSystemMVCClient.Models
         [Display(Name = "Confirm Password")]
         [Compare("Password", ErrorMessage = "Password is not matching")]
         public string ConfirmPassword { get; set; }
+        [Display(Name = "Username (Email ID)")]
+        public string CustomerEmail { get; set; }
         public int Age { get; set; }
         [Required(ErrorMessage = "Enter your phone number!!")]
         [MaxLength(10, ErrorMessage = "It should be 10 digits")]

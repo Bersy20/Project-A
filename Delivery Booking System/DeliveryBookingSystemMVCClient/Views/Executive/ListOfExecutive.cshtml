@@ -12,9 +12,15 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.ExecutiveId)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.ExecutiveName)
             </th>
-            
+            <th>
+                @Html.DisplayNameFor(model => model.ExecutiveEmail)
+            </th>
+
             <th>
                 @Html.DisplayNameFor(model => model.Age)
             </th>
@@ -40,7 +46,13 @@
 @foreach (var item in Model) {
         <tr>
             <td>
+                @Html.DisplayFor(modelItem => item.ExecutiveId)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.ExecutiveName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExecutiveEmail)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Age)
@@ -62,8 +74,8 @@
             </td>
             <td>
 
-                 @Html.ActionLink("Edit", "EditExecutiveDetails", new { id = item.ExecutiveId }) |
-             
+                @Html.ActionLink("Edit", "EditExecutiveDetails", new { id = item.ExecutiveId }) |
+
                 @Html.ActionLink("Delete", "DeleteExecutive", new { id = item.ExecutiveId })
             </td>
         </tr>

@@ -77,7 +77,6 @@ namespace DeliveryBookingServiceSystemAPI.Controllers
             }
 
             return executive;
-
         }
         [HttpGet]
         [Route("WithCity")]
@@ -122,8 +121,6 @@ namespace DeliveryBookingServiceSystemAPI.Controllers
 
             return executive;
         }
-
-
         // POST: api/Executives
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
@@ -157,32 +154,20 @@ namespace DeliveryBookingServiceSystemAPI.Controllers
         {
             if (Verification(executive))
             {
-                if (Login(executive))
-                    return executive;
-                return NotFound();
-            }
-            return NotFound();
-        }
-
-        private bool Login(Executive executive)
-        {
-            if (Verification(executive))
-            {
                 try
                 {
-                    executive = _context.Executives.SingleOrDefault(u => u.ExecutiveId == executive.ExecutiveId && u.Password == executive.Password);
+                    executive = _context.Executives.SingleOrDefault(u => u.ExecutiveEmail == executive.ExecutiveEmail && u.Password == executive.Password);
                     if (executive == null)
-                        return false;
-                    return true;
+                        return NotFound();
+                    return executive;
                 }
                 catch (Exception)
                 {
-                    return false;
+                    return NotFound();
                 }
-                return false;
             }
-            return false;
-        }
+            return NotFound();
+        }   
         private bool ExecutiveExists(int id)
         {
             return _context.Executives.Any(e => e.ExecutiveId == id);
@@ -191,7 +176,7 @@ namespace DeliveryBookingServiceSystemAPI.Controllers
         {
             try
             {
-                executive = _context.Executives.SingleOrDefault(u => u.ExecutiveId == executive.ExecutiveId);
+                executive = _context.Executives.SingleOrDefault(u => u.ExecutiveEmail == executive.ExecutiveEmail);
                 if (executive == null)
                     return false;
                 else
@@ -205,8 +190,6 @@ namespace DeliveryBookingServiceSystemAPI.Controllers
             {
                 return false;
             }
-            return false;
         }
-
     }
 }

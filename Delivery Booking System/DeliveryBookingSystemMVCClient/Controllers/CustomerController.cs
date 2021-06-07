@@ -33,8 +33,7 @@ namespace DeliveryBookingSystemMVCClient.Controllers
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     var obj = JsonConvert.DeserializeObject<Customer>(apiResponse);
-                    //TempData["CustomerId"] = obj.CustomerId;
-                    TempData["CustId"] = obj.CustomerId;
+                    TempData["CustomerEmail"] = obj.CustomerEmail;
                 }
             }
             TempData["Success"] = "You have sucessfully Registered...";
@@ -43,35 +42,37 @@ namespace DeliveryBookingSystemMVCClient.Controllers
         [HttpGet]
         public ActionResult LoginCustomer()
         {
-            Customer customer = new Customer();
-            customer.CustomerId = Convert.ToInt32(TempData.Peek("CustId"));
-            return View(customer);
+            Customer customer = new Customer(); 
+            try
+            {
+                customer.CustomerEmail = TempData.Peek("CustomerEmail").ToString();
+                return View(customer);
+            }
+            catch(Exception e)
+            {
+                return View(customer);
+            }
         }
         [HttpPost]
         public async Task<ActionResult> LoginCustomer(Customer customer)
         {
             using (var httpClient = new HttpClient())
             {
-
                 StringContent content = new StringContent(JsonConvert.SerializeObject(customer), Encoding.UTF8, "application/json");
-
                 using (var response = await httpClient.PostAsync("http://localhost:27527/api/Customer/LoginCustomer", content))
                 {
-                    //customer.CustomerId = Convert.ToInt32(TempData.Peek("CustomerId"));
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     var obj = JsonConvert.DeserializeObject<Customer>(apiResponse);
+                    TempData["CustomerEmail"] = obj.CustomerEmail;
                     TempData["CustomerId"] = obj.CustomerId;
-                    if (obj.CustomerId == 0)
+                    if (obj.CustomerEmail == null)
                     {
                         return RedirectToAction("CustomerLoginErrorPage");
                     }
                     else
                     {
-                        int CustomerId = Convert.ToInt32(TempData.Peek("CustomerId"));
-                        if (CustomerId != 0)
+                        if (obj.CustomerEmail != null)
                         {
-                            TempData["CustomerId"] = customer.CustomerId;
-
                             return RedirectToAction("CustomerPage");
                         }
                         else
@@ -105,24 +106,24 @@ namespace DeliveryBookingSystemMVCClient.Controllers
         public async Task<ActionResult> EditCustomerDetails(int id)
         {
             TempData["CustomerId"] = id;
-            Customer b = new Customer();
+            Customer customer = new Customer();
             using (var httpClient = new HttpClient())
             {
                 using (var response = await httpClient.GetAsync("http://localhost:27527/api/Customer/CustomerById?id=" + id))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    b = JsonConvert.DeserializeObject<Customer>(apiResponse);
+                    customer = JsonConvert.DeserializeObject<Customer>(apiResponse);
                 }
             }
-            return View(b);
+            return View(customer);
         }
         [HttpPost]
-        public async Task<ActionResult> EditCustomerDetails(Customer b)
+        public async Task<ActionResult> EditCustomerDetails(Customer customer)
         {
             int CustomerId = Convert.ToInt32(TempData["CustomerId"]);
             using (var httpClient = new HttpClient())
             {
-                StringContent content = new StringContent(JsonConvert.SerializeObject(b), Encoding.UTF8, "application/json");
+                StringContent content = new StringContent(JsonConvert.SerializeObject(customer), Encoding.UTF8, "application/json");
 
                 using (var response = await httpClient.PutAsync("http://localhost:27527/api/Customer/" + CustomerId, content))
                 {
@@ -135,19 +136,19 @@ namespace DeliveryBookingSystemMVCClient.Controllers
         public async Task<ActionResult> DeleteCustomerDetails(int id)
         {
             TempData["CustomerId"] = id;
-            Customer b = new Customer();
+            Customer customer = new Customer();
             using (var httpClient = new HttpClient())
             {
                 using (var response = await httpClient.GetAsync("http://localhost:27527/api/Customer/CustomerById?id=" + id))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    b = JsonConvert.DeserializeObject<Customer>(apiResponse);
+                    customer = JsonConvert.DeserializeObject<Customer>(apiResponse);
                 }
             }
-            return View(b);
+            return View(customer);
         }
         [HttpPost]
-        public async Task<ActionResult> DeleteCustomerDetails(Customer b)
+        public async Task<ActionResult> DeleteCustomerDetails(Customer customer)
         {
             int CustomerId = Convert.ToInt32(TempData["CustomerId"]);
             using (var httpClient = new HttpClient())

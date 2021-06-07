@@ -29,8 +29,7 @@ namespace DeliveryBookingSystemMVCClient.Controllers
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     var obj = JsonConvert.DeserializeObject<Executive>(apiResponse);
-                    //TempData["ExecutiveId"] = obj.ExecutiveId;
-                    TempData["ExId"] = obj.ExecutiveId;
+                    TempData["ExecutiveEmail"] = obj.ExecutiveEmail;
                 }
             }
             TempData["Success"] = "You have sucessfully Registered...";
@@ -40,8 +39,15 @@ namespace DeliveryBookingSystemMVCClient.Controllers
         public ActionResult LoginExecutive()
         {
             Executive executive = new Executive();
-            executive.ExecutiveId = Convert.ToInt32(TempData.Peek("ExId"));
-            return View(executive);
+            try
+            {
+                executive.ExecutiveEmail = TempData.Peek("ExecutiveEmail").ToString();
+                return View(executive);
+            }
+            catch (Exception e)
+            {
+                return View(executive);
+            }
         }
         [HttpPost]
         public async Task<ActionResult> LoginExecutive(Executive executive)
@@ -54,17 +60,16 @@ namespace DeliveryBookingSystemMVCClient.Controllers
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     var obj = JsonConvert.DeserializeObject<Executive>(apiResponse);
+                    TempData["ExecutiveEmail"] = obj.ExecutiveEmail;
                     TempData["ExecutiveId"] = obj.ExecutiveId;
-                    if (obj.ExecutiveId == 0)
+                    if (obj.ExecutiveEmail == null)
                     {
                         return RedirectToAction("ExecutiveLoginErrorPage");
                     }
                     else
                     {
-                        int ExecutiveId = Convert.ToInt32(TempData.Peek("ExecutiveId"));
-                        if (ExecutiveId != 0)
+                        if (obj.ExecutiveEmail != null)
                         {
-                            TempData["ExecutiveId"] = executive.ExecutiveId;
                             return RedirectToAction("ExecutivePage");
                         }
                         else
@@ -120,7 +125,7 @@ namespace DeliveryBookingSystemMVCClient.Controllers
         }
         public async Task<ActionResult> EditExecutiveStatus(int id)
         {
-            id= Convert.ToInt32(TempData["ExecutiveId"]) ;
+            id = Convert.ToInt32(TempData["ExecutiveId"]);
             Executive executive = new Executive();
             using (var httpClient = new HttpClient())
             {
@@ -130,6 +135,7 @@ namespace DeliveryBookingSystemMVCClient.Controllers
                     executive = JsonConvert.DeserializeObject<Executive>(apiResponse);
                     TempData["ExecutiveId"] = executive.ExecutiveId;
                     TempData["ExecutiveName"] = executive.ExecutiveName;
+                    TempData["ExecutiveEmail"] = executive.ExecutiveEmail;
                     TempData["Address"] = executive.Address;
                     TempData["Age"] = executive.Age;
                     TempData["ExecutiveStatus"] = executive.ExecutiveStatus;
@@ -145,6 +151,7 @@ namespace DeliveryBookingSystemMVCClient.Controllers
         {
             int ExecutiveId = Convert.ToInt32(TempData["ExecutiveId"]);
             string ExecutiveName = TempData["ExecutiveName"].ToString();
+            string ExecutiveEmail = TempData["ExecutiveEmail"].ToString();
             string Address = TempData["Address"].ToString();
             int Age = Convert.ToInt32(TempData["Age"]);
             string ExecutiveStatus = TempData["ExecutiveStatus"].ToString();
@@ -166,24 +173,24 @@ namespace DeliveryBookingSystemMVCClient.Controllers
         public async Task<ActionResult> EditExecutiveDetails(int id)
         {
             TempData["ExecutiveId"] = id;
-            Executive b = new Executive();
+            Executive executive = new Executive();
             using (var httpClient = new HttpClient())
             {
                 using (var response = await httpClient.GetAsync("http://localhost:27527/api/Executive/" + id))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    b = JsonConvert.DeserializeObject<Executive>(apiResponse);
+                    executive = JsonConvert.DeserializeObject<Executive>(apiResponse);
                 }
             }
-            return View(b);
+            return View(executive);
         }
         [HttpPost]
-        public async Task<ActionResult> EditExecutiveDetails(Executive b)
+        public async Task<ActionResult> EditExecutiveDetails(Executive executive)
         {
             int ExecutiveId = Convert.ToInt32(TempData["ExecutiveId"]);
             using (var httpClient = new HttpClient())
             {
-                StringContent content = new StringContent(JsonConvert.SerializeObject(b), Encoding.UTF8, "application/json");
+                StringContent content = new StringContent(JsonConvert.SerializeObject(executive), Encoding.UTF8, "application/json");
 
                 using (var response = await httpClient.PutAsync("http://localhost:27527/api/Executive/" + ExecutiveId, content))
                 {
@@ -197,19 +204,19 @@ namespace DeliveryBookingSystemMVCClient.Controllers
         public async Task<ActionResult> DeleteExecutiveDetails(int id)
         {
             TempData["ExecutiveId"] = id;
-            Executive b = new Executive();
+            Executive executive = new Executive();
             using (var httpClient = new HttpClient())
             {
                 using (var response = await httpClient.GetAsync("http://localhost:27527/api/Executive/" + id))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    b = JsonConvert.DeserializeObject<Executive>(apiResponse);
+                    executive = JsonConvert.DeserializeObject<Executive>(apiResponse);
                 }
             }
-            return View(b);
+            return View(executive);
         }
         [HttpPost]
-        public async Task<ActionResult> DeleteExecutiveDetails(Executive b)
+        public async Task<ActionResult> DeleteExecutiveDetails(Executive executive)
         {
             int ExecutiveId = Convert.ToInt32(TempData["ExecutiveId"]);
             using (var httpClient = new HttpClient())
