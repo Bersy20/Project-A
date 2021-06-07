@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DeliveryBookingServiceSystemAPI.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20210605162332_init")]
+    [Migration("20210607175215_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -20,6 +20,56 @@ namespace DeliveryBookingServiceSystemAPI.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.6")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("DeliveryBookingServiceSystemAPI.Models.Admin", b =>
+                {
+                    b.Property<int>("AdminId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AdminEmail")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AdminName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Age")
+                        .HasColumnType("int");
+
+                    b.Property<string>("City")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Phone")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PinCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("AdminId");
+
+                    b.ToTable("Admins");
+
+                    b.HasData(
+                        new
+                        {
+                            AdminId = 1,
+                            Address = "No.61, Anna Nagar",
+                            AdminEmail = "admin@gmail.com",
+                            AdminName = "Admin",
+                            Age = 32,
+                            City = "Chennai",
+                            Password = "Admin",
+                            Phone = "9443354155",
+                            PinCode = "600006"
+                        });
+                });
 
             modelBuilder.Entity("DeliveryBookingServiceSystemAPI.Models.Booking", b =>
                 {
@@ -83,6 +133,9 @@ namespace DeliveryBookingServiceSystemAPI.Migrations
                     b.Property<string>("City")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("CustomerEmail")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("CustomerName")
                         .HasColumnType("nvarchar(max)");
 
@@ -109,6 +162,7 @@ namespace DeliveryBookingServiceSystemAPI.Migrations
                             Address = "1/271, BTR Nagar, Sipcot",
                             Age = 22,
                             City = "Hosur",
+                            CustomerEmail = "bersy@gmail.com",
                             CustomerName = "Bersy",
                             IsVerified = true,
                             Password = "1234",
@@ -131,6 +185,9 @@ namespace DeliveryBookingServiceSystemAPI.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("City")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ExecutiveEmail")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ExecutiveName")
@@ -159,15 +216,16 @@ namespace DeliveryBookingServiceSystemAPI.Migrations
                         new
                         {
                             ExecutiveId = 100,
-                            Address = "No.61, Anna Nagar",
-                            Age = 32,
-                            City = "Chennai",
+                            Address = "No.81, Annai Nagar",
+                            Age = 22,
+                            City = "Hosur",
+                            ExecutiveEmail = "arun@gmail.com",
                             ExecutiveName = "Arun",
                             ExecutiveStatus = "Available",
                             IsVerified = true,
-                            Password = "Admin",
-                            Phone = "9443354155",
-                            PinCode = "600006"
+                            Password = "1234",
+                            Phone = "9943354155",
+                            PinCode = "601206"
                         });
                 });
 

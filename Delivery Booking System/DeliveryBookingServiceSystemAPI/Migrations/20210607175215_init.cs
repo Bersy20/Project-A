@@ -8,6 +8,26 @@ namespace DeliveryBookingServiceSystemAPI.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Admins",
+                columns: table => new
+                {
+                    AdminId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    AdminName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    AdminEmail = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Age = table.Column<int>(type: "int", nullable: false),
+                    Phone = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    City = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PinCode = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Admins", x => x.AdminId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Customers",
                 columns: table => new
                 {
@@ -15,6 +35,7 @@ namespace DeliveryBookingServiceSystemAPI.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CustomerName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CustomerEmail = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Age = table.Column<int>(type: "int", nullable: false),
                     Phone = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -35,6 +56,7 @@ namespace DeliveryBookingServiceSystemAPI.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ExecutiveName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ExecutiveEmail = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Age = table.Column<int>(type: "int", nullable: false),
                     Phone = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -83,14 +105,19 @@ namespace DeliveryBookingServiceSystemAPI.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "Admins",
+                columns: new[] { "AdminId", "Address", "AdminEmail", "AdminName", "Age", "City", "Password", "Phone", "PinCode" },
+                values: new object[] { 1, "No.61, Anna Nagar", "admin@gmail.com", "Admin", 32, "Chennai", "Admin", "9443354155", "600006" });
+
+            migrationBuilder.InsertData(
                 table: "Customers",
-                columns: new[] { "CustomerId", "Address", "Age", "City", "CustomerName", "IsVerified", "Password", "Phone", "PinCode" },
-                values: new object[] { 1000, "1/271, BTR Nagar, Sipcot", 22, "Hosur", "Bersy", true, "1234", "7598377137", "635126" });
+                columns: new[] { "CustomerId", "Address", "Age", "City", "CustomerEmail", "CustomerName", "IsVerified", "Password", "Phone", "PinCode" },
+                values: new object[] { 1000, "1/271, BTR Nagar, Sipcot", 22, "Hosur", "bersy@gmail.com", "Bersy", true, "1234", "7598377137", "635126" });
 
             migrationBuilder.InsertData(
                 table: "Executives",
-                columns: new[] { "ExecutiveId", "Address", "Age", "City", "ExecutiveName", "ExecutiveStatus", "IsVerified", "Password", "Phone", "PinCode" },
-                values: new object[] { 100, "No.61, Anna Nagar", 32, "Chennai", "Arun", "Available", true, "Admin", "9443354155", "600006" });
+                columns: new[] { "ExecutiveId", "Address", "Age", "City", "ExecutiveEmail", "ExecutiveName", "ExecutiveStatus", "IsVerified", "Password", "Phone", "PinCode" },
+                values: new object[] { 100, "No.81, Annai Nagar", 22, "Hosur", "arun@gmail.com", "Arun", "Available", true, "1234", "9943354155", "601206" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Bookings_CustomerId",
@@ -105,6 +132,9 @@ namespace DeliveryBookingServiceSystemAPI.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Admins");
+
             migrationBuilder.DropTable(
                 name: "Bookings");
 
