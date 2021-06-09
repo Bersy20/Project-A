@@ -159,7 +159,7 @@ namespace DeliveryBookingServiceSystemAPI.Migrations
                             CustomerId = 1000,
                             Address = "1/271, BTR Nagar, Sipcot",
                             Age = 22,
-                            City = "Hosur",
+                            City = "HOSUR",
                             CustomerEmail = "bersy@gmail.com",
                             CustomerName = "Bersy",
                             IsVerified = true,

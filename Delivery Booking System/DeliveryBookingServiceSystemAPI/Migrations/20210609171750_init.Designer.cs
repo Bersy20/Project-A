@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DeliveryBookingServiceSystemAPI.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20210607175215_init")]
+    [Migration("20210609171750_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -64,7 +64,7 @@ namespace DeliveryBookingServiceSystemAPI.Migrations
                             AdminEmail = "admin@gmail.com",
                             AdminName = "Admin",
                             Age = 32,
-                            City = "Chennai",
+                            City = "CHENNAI",
                             Password = "Admin",
                             Phone = "9443354155",
                             PinCode = "600006"
@@ -161,7 +161,7 @@ namespace DeliveryBookingServiceSystemAPI.Migrations
                             CustomerId = 1000,
                             Address = "1/271, BTR Nagar, Sipcot",
                             Age = 22,
-                            City = "Hosur",
+                            City = "HOSUR",
                             CustomerEmail = "bersy@gmail.com",
                             CustomerName = "Bersy",
                             IsVerified = true,
@@ -218,7 +218,7 @@ namespace DeliveryBookingServiceSystemAPI.Migrations
                             ExecutiveId = 100,
                             Address = "No.81, Annai Nagar",
                             Age = 22,
-                            City = "Hosur",
+                            City = "HOSUR",
                             ExecutiveEmail = "arun@gmail.com",
                             ExecutiveName = "Arun",
                             ExecutiveStatus = "Available",

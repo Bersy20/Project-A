@@ -107,17 +107,17 @@ namespace DeliveryBookingServiceSystemAPI.Migrations
             migrationBuilder.InsertData(
                 table: "Admins",
                 columns: new[] { "AdminId", "Address", "AdminEmail", "AdminName", "Age", "City", "Password", "Phone", "PinCode" },
-                values: new object[] { 1, "No.61, Anna Nagar", "admin@gmail.com", "Admin", 32, "Chennai", "Admin", "9443354155", "600006" });
+                values: new object[] { 1, "No.61, Anna Nagar", "admin@gmail.com", "Admin", 32, "CHENNAI", "Admin", "9443354155", "600006" });
 
             migrationBuilder.InsertData(
                 table: "Customers",
                 columns: new[] { "CustomerId", "Address", "Age", "City", "CustomerEmail", "CustomerName", "IsVerified", "Password", "Phone", "PinCode" },
-                values: new object[] { 1000, "1/271, BTR Nagar, Sipcot", 22, "Hosur", "bersy@gmail.com", "Bersy", true, "1234", "7598377137", "635126" });
+                values: new object[] { 1000, "1/271, BTR Nagar, Sipcot", 22, "HOSUR", "bersy@gmail.com", "Bersy", true, "1234", "7598377137", "635126" });
 
             migrationBuilder.InsertData(
                 table: "Executives",
                 columns: new[] { "ExecutiveId", "Address", "Age", "City", "ExecutiveEmail", "ExecutiveName", "ExecutiveStatus", "IsVerified", "Password", "Phone", "PinCode" },
-                values: new object[] { 100, "No.81, Annai Nagar", 22, "Hosur", "arun@gmail.com", "Arun", "Available", true, "1234", "9943354155", "601206" });
+                values: new object[] { 100, "No.81, Annai Nagar", 22, "HOSUR", "arun@gmail.com", "Arun", "Available", true, "1234", "9943354155", "601206" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Bookings_CustomerId",

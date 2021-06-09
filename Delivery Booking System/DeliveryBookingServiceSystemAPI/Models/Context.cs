@@ -32,7 +32,7 @@ namespace DeliveryBookingServiceSystemAPI.Models
                    Age = 22,
                    Phone = "7598377137",
                    Address = "1/271, BTR Nagar, Sipcot",
-                   City = "Hosur",
+                   City = "HOSUR",
                    PinCode = "635126",
                    IsVerified = true
                });
