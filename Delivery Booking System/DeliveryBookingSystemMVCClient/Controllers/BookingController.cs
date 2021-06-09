@@ -56,6 +56,7 @@ namespace DeliveryBookingProjectMVC.Controllers
         {
             try
             {
+                booking.City = booking.City.ToUpper();
                 string ExecCity = TempData.Peek("ExecCity").ToString();
                 if (booking.City != ExecCity)
                 {
@@ -153,15 +154,16 @@ namespace DeliveryBookingProjectMVC.Controllers
         {
             int BookingId = Convert.ToInt32(TempData.Peek("BookingId"));
             int CustomerId = Convert.ToInt32(TempData.Peek("CustomerId"));
+            booking.City = booking.City.ToUpper();
             using (var httpClient = new HttpClient())
             {
                 StringContent content = new StringContent(JsonConvert.SerializeObject(booking), Encoding.UTF8, "application/json");
-
                 using (var response = await httpClient.PutAsync("http://localhost:27527/api/Booking/PutBooking?id=" + BookingId, content))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     var obj = JsonConvert.DeserializeObject<Booking>(apiResponse);
                 }
+               
             }
             return RedirectToAction("ListOfBookings");
         }

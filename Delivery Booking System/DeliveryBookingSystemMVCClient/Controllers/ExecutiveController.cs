@@ -23,6 +23,7 @@ namespace DeliveryBookingSystemMVCClient.Controllers
         {
             using (var httpClient = new HttpClient())
             {
+                executive.City = executive.City.ToUpper();
                 StringContent content = new StringContent(JsonConvert.SerializeObject(executive), Encoding.UTF8, "application/json");
 
                 using (var response = await httpClient.PostAsync("http://localhost:27527/api/Executive/PostExecutive", content))
@@ -188,6 +189,7 @@ namespace DeliveryBookingSystemMVCClient.Controllers
         public async Task<ActionResult> EditExecutiveDetails(Executive executive)
         {
             int ExecutiveId = Convert.ToInt32(TempData["ExecutiveId"]);
+            executive.City = executive.City.ToUpper();
             using (var httpClient = new HttpClient())
             {
                 StringContent content = new StringContent(JsonConvert.SerializeObject(executive), Encoding.UTF8, "application/json");
@@ -333,7 +335,7 @@ namespace DeliveryBookingSystemMVCClient.Controllers
         public IActionResult ListOfExecutiveAvailableForCustomerViewPost()
         {
             string SearchCity = Request.Form["City"];
-            TempData["Result"] = SearchCity;
+            TempData["Result"] = SearchCity.ToUpper();
             return RedirectToAction("GetExecutivesByCity");
         }
     }

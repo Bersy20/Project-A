@@ -27,6 +27,7 @@ namespace DeliveryBookingSystemMVCClient.Controllers
         {
             using (var httpClient = new HttpClient())
             {
+                customer.City = customer.City.ToUpper();
                 StringContent content = new StringContent(JsonConvert.SerializeObject(customer), Encoding.UTF8, "application/json");
 
                 using (var response = await httpClient.PostAsync("http://localhost:27527/api/Customer/PostCustomer", content))
@@ -121,6 +122,7 @@ namespace DeliveryBookingSystemMVCClient.Controllers
         public async Task<ActionResult> EditCustomerDetails(Customer customer)
         {
             int CustomerId = Convert.ToInt32(TempData["CustomerId"]);
+            customer.City = customer.City.ToUpper();
             using (var httpClient = new HttpClient())
             {
                 StringContent content = new StringContent(JsonConvert.SerializeObject(customer), Encoding.UTF8, "application/json");

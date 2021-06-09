@@ -180,7 +180,6 @@ namespace DeliveryBookingServiceSystemAPI.Controllers
             }
 
             _context.Entry(booking).State = EntityState.Modified;
-
             try
             {
                 await _context.SaveChangesAsync();

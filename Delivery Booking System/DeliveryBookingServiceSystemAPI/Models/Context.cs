@@ -46,7 +46,7 @@ namespace DeliveryBookingServiceSystemAPI.Models
                     Age = 22,
                     Phone = "9943354155",
                     Address = "No.81, Annai Nagar",
-                    City = "Hosur",
+                    City = "HOSUR",
                     PinCode = "601206",
                     IsVerified = true,
                     ExecutiveStatus = "Available"
@@ -61,7 +61,7 @@ namespace DeliveryBookingServiceSystemAPI.Models
                     Age = 32,
                     Phone = "9443354155",
                     Address = "No.61, Anna Nagar",
-                    City = "Chennai",
+                    City = "CHENNAI",
                     PinCode = "600006",
                    
                 });
