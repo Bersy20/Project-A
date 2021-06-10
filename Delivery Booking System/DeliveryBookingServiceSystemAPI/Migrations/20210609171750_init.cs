@@ -13,14 +13,14 @@ namespace DeliveryBookingServiceSystemAPI.Migrations
                 {
                     AdminId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    AdminName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Password = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    AdminEmail = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    AdminName = table.Column<string>(type: "nvarchar(15)", nullable: true),
+                    Password = table.Column<string>(type: "nvarchar(10)", nullable: true),
+                    AdminEmail = table.Column<string>(type: "nvarchar(20)", nullable: true),
                     Age = table.Column<int>(type: "int", nullable: false),
-                    Phone = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    City = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PinCode = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Phone = table.Column<string>(type: "nvarchar(10)", nullable: true),
+                    Address = table.Column<string>(type: "nvarchar(50)", nullable: true),
+                    City = table.Column<string>(type: "nvarchar(20)", nullable: true),
+                    PinCode = table.Column<string>(type: "nvarchar(6)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -33,14 +33,14 @@ namespace DeliveryBookingServiceSystemAPI.Migrations
                 {
                     CustomerId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CustomerName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Password = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CustomerEmail = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CustomerName = table.Column<string>(type: "nvarchar(15)", nullable: true),
+                    Password = table.Column<string>(type: "nvarchar(10)", nullable: true),
+                    CustomerEmail = table.Column<string>(type: "nvarchar(20)", nullable: true),
                     Age = table.Column<int>(type: "int", nullable: false),
-                    Phone = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    City = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PinCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Phone = table.Column<string>(type: "nvarchar(10)", nullable: true),
+                    Address = table.Column<string>(type: "nvarchar(50)", nullable: true),
+                    City = table.Column<string>(type: "nvarchar(20)", nullable: true),
+                    PinCode = table.Column<string>(type: "nvarchar(6)", nullable: true),
                     IsVerified = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -54,16 +54,16 @@ namespace DeliveryBookingServiceSystemAPI.Migrations
                 {
                     ExecutiveId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ExecutiveName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Password = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ExecutiveEmail = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ExecutiveName = table.Column<string>(type: "nvarchar(15)", nullable: true),
+                    Password = table.Column<string>(type: "nvarchar(20)", nullable: true),
+                    ExecutiveEmail = table.Column<string>(type: "nvarchar(10)", nullable: true),
                     Age = table.Column<int>(type: "int", nullable: false),
-                    Phone = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    City = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PinCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Phone = table.Column<string>(type: "nvarchar(10)", nullable: true),
+                    Address = table.Column<string>(type: "nvarchar(50)", nullable: true),
+                    City = table.Column<string>(type: "nvarchar(20)", nullable: true),
+                    PinCode = table.Column<string>(type: "nvarchar(6)", nullable: true),
                     IsVerified = table.Column<bool>(type: "bit", nullable: false),
-                    ExecutiveStatus = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    ExecutiveStatus = table.Column<string>(type: "nvarchar(20)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -80,12 +80,12 @@ namespace DeliveryBookingServiceSystemAPI.Migrations
                     ExecutiveId = table.Column<int>(type: "int", nullable: false),
                     DateTimeOfPickUp = table.Column<DateTime>(type: "datetime2", nullable: false),
                     WeightOfPackage = table.Column<double>(type: "float", nullable: false),
-                    Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    City = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PinCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Phone = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Address = table.Column<string>(type: "nvarchar(50)", nullable: true),
+                    City = table.Column<string>(type: "nvarchar(20)", nullable: true),
+                    PinCode = table.Column<string>(type: "nvarchar(6)", nullable: true),
+                    Phone = table.Column<string>(type: "nvarchar(10)", nullable: true),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    DeliveryStatus = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    DeliveryStatus = table.Column<string>(type: "nvarchar(10)", nullable: true)
                 },
                 constraints: table =>
                 {
