@@ -8,10 +8,13 @@
     <br />
     <h1 style="color:teal">Login to Experience our Delivery Service...</h1>
     <hr />
-   
+
     <marquee width="100%" direction="left" scrollamount="12" height="50px">
         <h2 style="color:cadetblue">World's Best and Fastest Delivery system</h2>
     </marquee>
+    <span class="badge badge-success">@TempData["passA"]</span>
+    <br />
+
     <div class="row">
         <div class="col-md-4">
             <form asp-action="LoginAdmin">
@@ -29,6 +32,8 @@
                 <br />
                 <div class="form-group">
                     <input type="submit" value="Login" class="btn btn-primary" />
+                    @Html.ActionLink("Forgot Password", "UpdatePassword", "Admin")
+
                 </div>
             </form>
         </div>

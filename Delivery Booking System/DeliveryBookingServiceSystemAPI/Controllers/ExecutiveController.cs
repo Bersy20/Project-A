@@ -121,16 +121,30 @@ namespace DeliveryBookingServiceSystemAPI.Controllers
 
             return executive;
         }
+        [Route("UpdatePassword")]
+        [HttpPut]
+        public async Task<IActionResult> UpdatePassword(int id, string password)
+        {
+            Executive executive = new Executive();
+            executive = _context.Executives.Where(e => e.ExecutiveId == id).SingleOrDefault();
+            executive.Password = password;
+            await _context.SaveChangesAsync();
+            return NoContent();
+        }
         // POST: api/Executives
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         [Route("PostExecutive")]
         public async Task<ActionResult<Executive>> PostExecutive(Executive executive)
         {
-            _context.Executives.Add(executive);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetExecutive", new { id = executive.ExecutiveId }, executive);
+            var check = _context.Executives.Where(e => e.ExecutiveEmail == executive.ExecutiveEmail).SingleOrDefault();
+            if(check.ExecutiveEmail !=executive.ExecutiveEmail)
+            {
+                _context.Executives.Add(executive);
+                await _context.SaveChangesAsync();
+                return CreatedAtAction("GetExecutive", new { id = executive.ExecutiveId }, executive);
+            }
+            return NoContent();
         }
 
         // DELETE: api/Executives/5

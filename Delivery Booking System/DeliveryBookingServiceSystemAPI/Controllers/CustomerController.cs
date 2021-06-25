@@ -100,6 +100,16 @@ namespace DeliveryBookingServiceSystemAPI.Controllers
 
             return NoContent();
         }
+        [Route("UpdatePassword")]
+        [HttpPut]
+        public async Task<IActionResult> UpdatePassword(int id, string password)
+        {
+            Customer customer = new Customer();
+            customer=_context.Customers.Where(e => e.CustomerId ==id).SingleOrDefault();
+            customer.Password = password;
+            await _context.SaveChangesAsync();
+            return NoContent();
+        }
 
         // POST: api/Customers
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
@@ -107,10 +117,14 @@ namespace DeliveryBookingServiceSystemAPI.Controllers
         [Route("PostCustomer")]
         public async Task<ActionResult<Customer>> PostCustomer(Customer customer)
         {
-            _context.Customers.Add(customer);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetCustomer", new { id = customer.CustomerId }, customer);
+            var check = _context.Customers.Where(e => e.CustomerEmail == customer.CustomerEmail).SingleOrDefault();
+            if (check.CustomerEmail != customer.CustomerEmail)
+            {
+                _context.Customers.Add(customer);
+                await _context.SaveChangesAsync();
+                return CreatedAtAction("GetCustomer", new { id = customer.CustomerId }, customer);
+            }
+            return NoContent();
         }
         [Route("LoginCustomer")]
         [HttpPost]
@@ -152,8 +166,7 @@ namespace DeliveryBookingServiceSystemAPI.Controllers
         private bool CustomerExists(int id)
         {
             return _context.Customers.Any(e => e.CustomerId == id);
-        }
-        
+        }        
         private bool Verification(Customer customer)
         {
             try

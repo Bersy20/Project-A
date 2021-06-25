@@ -6,6 +6,7 @@
 }
 
 <h3>Executive Registration</h3>
+<span class="badge badge-danger">@TempData["RegFail"]</span>
 
 <hr />
 <div class="row">
@@ -68,8 +69,8 @@
 <h5>Kindly Note which will be neccessay for future Login</h5>
 
 @*<div>
-    <a asp-action="Index">Back to List</a>
-</div>*@
+        <a asp-action="Index">Back to List</a>
+    </div>*@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

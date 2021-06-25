@@ -5,14 +5,18 @@
     Layout = "~/Views/Shared/HomePage.cshtml";
 }
 
-<span class="badge badge-success">@TempData["Success"]</span>
 
 <h1 style="color:teal">Login to Experience our Delivery Service...</h1>
 <hr />
 
 <marquee width="100%" direction="left" scrollamount="12" height="50px">
     <h2 style="color:cadetblue">World's Best and Fastest Delivery system</h2>
-</marquee><div class="row">
+</marquee>
+<div class="row">
+    <span class="badge badge-success">@TempData["Success"]</span>
+    <span class="badge badge-success">@TempData["passE"]</span>
+    <br />
+
     <div class="col-md-4">
         <form asp-action="LoginExecutive">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -29,6 +33,8 @@
 
             <div class="form-group">
                 <input type="submit" value="Login" class="btn btn-primary" />
+                @Html.ActionLink("Forgot Password", "UpdatePassword", "Executive")
+
             </div>
         </form>
     </div>

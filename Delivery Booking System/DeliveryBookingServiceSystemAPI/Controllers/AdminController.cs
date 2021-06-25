@@ -71,6 +71,16 @@ namespace DeliveryBookingServiceSystemAPI.Controllers
 
             return NoContent();
         }
+        [Route("UpdatePassword")]
+        [HttpPut]
+        public async Task<IActionResult> UpdatePassword(int id, string password)
+        {
+            Admin admin = new Admin();
+            admin = _context.Admins.Where(e => e.AdminId == id).SingleOrDefault();
+            admin.Password = password;
+            await _context.SaveChangesAsync();
+            return NoContent();
+        }
 
         // POST: api/Admin
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754

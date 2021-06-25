@@ -1,4 +1,5 @@
 ﻿using DeliveryBookingSystemMVCClient.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System;
@@ -30,11 +31,17 @@ namespace DeliveryBookingSystemMVCClient.Controllers
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     var obj = JsonConvert.DeserializeObject<Executive>(apiResponse);
-                    TempData["ExecutiveEmail"] = obj.ExecutiveEmail;
+                    if(obj!=null)
+                    {
+                        TempData["ExecutiveEmail"] = obj.ExecutiveEmail;
+
+                        TempData["Success"] = "You have sucessfully Registered...";
+                        return RedirectToAction("LoginExecutive");
+                    }
                 }
             }
-            TempData["Success"] = "You have sucessfully Registered...";
-            return RedirectToAction("LoginExecutive");
+            TempData["RegFail"] = "User Name already Exists...";
+            return RedirectToAction("RegisterExecutive");
         }
         [HttpGet]
         public ActionResult LoginExecutive()
@@ -63,6 +70,7 @@ namespace DeliveryBookingSystemMVCClient.Controllers
                     var obj = JsonConvert.DeserializeObject<Executive>(apiResponse);
                     TempData["ExecutiveEmail"] = obj.ExecutiveEmail;
                     TempData["ExecutiveId"] = obj.ExecutiveId;
+                    TempData["ExecutiveName"] = obj.ExecutiveName;
                     if (obj.ExecutiveEmail == null)
                     {
                         return RedirectToAction("ExecutiveLoginErrorPage");
@@ -338,5 +346,71 @@ namespace DeliveryBookingSystemMVCClient.Controllers
             TempData["Result"] = SearchCity.ToUpper();
             return RedirectToAction("GetExecutivesByCity");
         }
+        public async Task<ActionResult> UpdatePassword()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<ActionResult> UpdatePassword(IFormCollection frm, string action)
+        {
+            if (action == "Submit")
+            {
+
+                int id = Convert.ToInt32(frm["txtExecId"]);
+                TempData["id"] = id;
+                string name = frm["txtUserName"];
+                TempData["ExecutiveEmail"] = name;
+                using (var httpClient = new HttpClient())
+                {
+                    using (var response = await httpClient.GetAsync("http://localhost:27527/api/Executive/" + id))
+                    {
+                        string apiResponse = await response.Content.ReadAsStringAsync();
+                        var obj = JsonConvert.DeserializeObject<Executive>(apiResponse);
+                        if (obj.ExecutiveId == id && obj.ExecutiveEmail == name)
+                        {
+                            return RedirectToAction("UpdatePassword2");
+                        }
+                        else
+                        {
+                            TempData["errorE"] = "Invalid User Name or ID...";
+                        }
+                    }
+                }
+            }
+            return RedirectToAction("LoginExecutive");
+        }
+        public async Task<ActionResult> UpdatePassword2()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<ActionResult> UpdatePassword2(IFormCollection frm, string action)
+        {
+            if (action == "Submit")
+            {
+                Executive executive = new Executive();
+                int id = Convert.ToInt32(TempData.Peek("id"));
+                string password = frm["txtPass"];
+                string confirmPassword = frm["txtConPass"];
+                if (password == confirmPassword)
+                {
+                    using (var httpClient = new HttpClient())
+                    {
+                        StringContent content = new StringContent(password, Encoding.UTF8, "application/json");
+
+                        using (var response = await httpClient.PutAsync("http://localhost:27527/api/Executive/UpdatePassword?id=" + id + "&password=" + password, content))
+                        {
+                            string apiResponse = await response.Content.ReadAsStringAsync();
+                        }
+                    }
+                    TempData["passE"] = "Password sucessfully updated...Login with Your new password";
+                    return RedirectToAction("LoginExecutive");
+                }
+                TempData["passErrE"] = "Check the Password there is a Mismatch...";
+                return RedirectToAction("UpdatePassword2");
+            }
+            return RedirectToAction("UpdatePassword");
+        }
     }
+
 }
